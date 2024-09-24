@@ -10,9 +10,7 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<
     protected static T m_Instance;
 
     public static T Instance
-    {
-        get { return m_Instance; }
-    }
+    { get { return m_Instance; } }
 
     private void Awake()
     {
@@ -24,7 +22,7 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<
     //이 함수를 확장해서 여러가지 다른 처리들 까지 추가할 수 있게 해주려는 의도
     protected virtual void Init()
     {
-        if(m_Instance != null)
+        if (m_Instance == null)
         {
             m_Instance = (T)this;
 

@@ -17,7 +17,7 @@ public class SceneLoader : SingletonBehaviour<SceneLoader>
     public void LoadScene(SceneType sceneType)
     {
         //현재 씬을 로거로 표시
-        Logger.Log($"{sceneType} 씬 로딩 중...");
+        Logger.Log($"{sceneType} Scene Loading....");
         //만약 일시정지가 있으면 로딩 됐을 때 타임 스케일을 1로 초기화 시켜주고 모든 씬을 로딩
         Time.timeScale = 1f;
         //게임 기획상 타임 스케일이 1이 아닌 경우도 있을 수 있기 때문에
@@ -29,10 +29,21 @@ public class SceneLoader : SingletonBehaviour<SceneLoader>
     public void ReloadScene()
     {
         //현재 켜져있는 씬의 이름이 로딩 된다는걸 로거로 표시
-        Logger.Log($"{SceneManager.GetActiveScene().name} 씬 로딩중...");
+        Logger.Log($"{SceneManager.GetActiveScene().name} Scene Loading....");
         //다시 타임 스케일을 1로 초기화
         Time.timeScale = 1f;
         //현재 켜져있는 씬을 다시 로드
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    //비동기로 로딩하는 함수 추가
+    public AsyncOperation LoadSceneAsync(SceneType sceneType)
+    {
+        //현재 비동기 씬이 로딩 중이라고 로그띄워줌
+        Logger.Log($"{sceneType} Scene async Loading...");
+        //비동기 로딩이 될때에도 게임 시간을 초기화
+        Time.timeScale = 1f;
+        //비동기 로딩씬을 반환 해줌
+        return SceneManager.LoadSceneAsync(sceneType.ToString());
     }
 }

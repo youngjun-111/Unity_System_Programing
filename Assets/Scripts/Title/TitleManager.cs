@@ -30,6 +30,7 @@ public class TitleManager : MonoBehaviour
 
     IEnumerator LoadGameCo()
     {
+      
         //이 코루틴 함수는 게임의 로딩을 처음 시작하는 중요한 함수이기 때문에
         //로그를 찍음.
         //GetType() : 클래스 명을 출력
@@ -43,5 +44,15 @@ public class TitleManager : MonoBehaviour
         LogoAnim.gameObject.SetActive(false);
         //타이틀 화면 꺼줬던걸 애니메이션 재생이 끝난 후 켜주기
         Title.SetActive(true);
+
+        m_AsyncOperation.progress.ToString();
+
+        if (m_AsyncOperation == null)
+        {
+            Logger.Log("Lobby async loading error.");
+            yield break;
+        }
+
+        m_AsyncOperation.allowSceneActivation = false;
     }
 }

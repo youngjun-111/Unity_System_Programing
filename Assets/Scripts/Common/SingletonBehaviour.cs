@@ -9,7 +9,7 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<
     //이 클래스의 스태틱 인스턴스 변수
     protected static T m_Instance;
 
-    public static T Instace
+    public static T Instance
     {
         get { return m_Instance; }
     }

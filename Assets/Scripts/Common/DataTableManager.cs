@@ -52,7 +52,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     {
         //특정 챕터 넘버로 챕터 데이터 테이블을 검색해서
         //그 챕터 넘버에 해당하는 데이터를 반환하는 함수
-        //링크사용 -> 링크 : 검새그 변경을 좀 더 용이하게 해주는 기능이다.
+        //링크사용 -> 링크 : 검색 변경을 좀 더 용이하게 해주는 기능이다.
         //만약 링크를 사용하지 않는다면
         /*
         foreach (var item in ChapterDataTable)

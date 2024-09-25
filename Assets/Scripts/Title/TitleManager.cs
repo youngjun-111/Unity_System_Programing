@@ -37,18 +37,27 @@ public class TitleManager : MonoBehaviour
             UserDataManager.Instance.SaveUserData();
         }
 
-        //_TEMP
+        //_TEMP_데이터테이블에서 챕터데이터 가져오기
         //ChapterData chapterData1 = DataTableManager.Instance.GetChapterData(10);
         //ChapterData chapterData2 = DataTableManager.Instance.GetChapterData(50);
 
         //return;
-
+        
 
         StartCoroutine(LoadGameCo());
     }
 
     IEnumerator LoadGameCo()
     {
+        //_TEMP_오디오 재생
+        //AudioManager.Instance.PlayBGM(BGM.lobby);
+        //yield return new WaitForSeconds(1f);
+        //AudioManager.Instance.PauseBGM();
+        //yield return new WaitForSeconds(1f);
+        //AudioManager.Instance.ResumeBGM();
+        //yield return new WaitForSeconds(1f);
+        //AudioManager.Instance.StopBGM();
+
         //이 코루틴 함수는 게임의 로딩을 처음 시작하는 중요한 함수이기 때문에
         //로그를 찍음.
         //GetType() : 클래스 명을 출력

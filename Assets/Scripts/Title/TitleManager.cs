@@ -36,20 +36,26 @@ public class TitleManager : MonoBehaviour
             UserDataManager.Instance.SetDefaultUserData();
             UserDataManager.Instance.SaveUserData();
         }
+        //3. _TEMP_컨펌 데이터를 가져와서 타이틀, 정보, 오케이버튼을 오픈 시켜줌
+        //var confirmUIData = new ConfirmUIData();
 
-        //_TEMP_데이터테이블에서 챕터데이터 가져오기
+        //confirmUIData.ConfirmType = ConfirmType.OK;
+        //confirmUIData.TitleTxt = "ConfirmUI Test";
+        //confirmUIData.DescTxt = "This Is UI Test.";
+        //confirmUIData.OkBtnTxt = "OK";
+        //UIManager.Instance.OpenUI<ConfirmUI>(confirmUIData);
+
+        //1. _TEMP_데이터테이블에서 챕터데이터 가져오기
         //ChapterData chapterData1 = DataTableManager.Instance.GetChapterData(10);
         //ChapterData chapterData2 = DataTableManager.Instance.GetChapterData(50);
-
         //return;
-        
 
         StartCoroutine(LoadGameCo());
     }
 
     IEnumerator LoadGameCo()
     {
-        //_TEMP_오디오 재생
+        //2. _TEMP_오디오 재생
         //AudioManager.Instance.PlayBGM(BGM.lobby);
         //yield return new WaitForSeconds(1f);
         //AudioManager.Instance.PauseBGM();

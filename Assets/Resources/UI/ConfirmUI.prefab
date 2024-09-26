@@ -846,7 +846,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5207913524887356789}
         m_TargetAssemblyTypeName: ConfirmUI, Assembly-CSharp
         m_MethodName: OnClickOKBtn
         m_Mode: 1
@@ -888,6 +888,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3737492746756440764}
+  - component: {fileID: 5207913524887356789}
   m_Layer: 5
   m_Name: ConfirmUI
   m_TagString: Untagged
@@ -916,6 +917,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5207913524887356789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3737492746756440763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7647a187e0257ca468a556752ce0af7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIOpenAnim: {fileID: 1527830700282223542}
+  TitleTxt: {fileID: 3737492746498914792}
+  DescTxt: {fileID: 3737492747077673169}
+  OKBtn: {fileID: 3737492746645498629}
+  CancelBtn: {fileID: 3737492747117750160}
+  OKBtnTxt: {fileID: 3737492746518834027}
+  CancelBtnTxt: {fileID: 3737492746202316811}
 --- !u!1 &3737492747077673167
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,7 +1192,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5207913524887356789}
         m_TargetAssemblyTypeName: ConfirmUI, Assembly-CSharp
         m_MethodName: OnClickCancelBtn
         m_Mode: 1

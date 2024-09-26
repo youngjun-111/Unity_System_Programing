@@ -84,6 +84,7 @@ public class BaseUI : MonoBehaviour
         m_OnClose = null;
 
         //CloseUI에 이 인스턴스를 매개변수로 넣어줌
+        //닫을 때 호출 될때 진짜 닫아줌
         //UIManager.Instance.CloseUI(this);
     }
 

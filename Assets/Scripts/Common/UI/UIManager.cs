@@ -76,11 +76,13 @@ public class UIManager : SingletonBehaviour<UIManager>
             Logger.LogError($"{uiType} is already Open.");
             return;
         }
+
         //위의 유효성 검사를 통과해서 정상적으로 UI화면이 열릴 수 있다면
         //이제 실제로 UI화면을 열고 데이터를 세팅해 준다.
 
         //childCount 하위에 있는 게임 오브젝트 갯수
         var siblingIdx = UICanvasTrs.childCount;
+
         //UI화면 초기화
         ui.Init(UICanvasTrs);
 
@@ -99,12 +101,14 @@ public class UIManager : SingletonBehaviour<UIManager>
 
         //컴포넌트가 연동된 게임오브젝트 활성화
         ui.gameObject.SetActive(true);
+
         //UI 화면에 보이는 UI요소의 데이터를 세팅해줌
         ui.SetInfo(uiData);
         ui.ShowUI();
 
         //현재 열고자하는 화면 UI가 가장 상단에 있는 UI가 될것이기 때문에 이렇게 설정
         m_FrontUI = ui;
+
         //m_OpenUIPool에 생성한 UI인스턴스를 넣어준다.
         m_OpenUIPool[uiType] = ui.gameObject;
     }
@@ -118,20 +122,62 @@ public class UIManager : SingletonBehaviour<UIManager>
         Logger.Log($"CloseUI UI : {uiType}");
 
         ui.gameObject.SetActive(false);
+
         //오브젝트 풀에서 제거
         m_OpenUIPool.Remove(uiType);
+
         //클로즈 풀에서 추가
         m_ClosedUIPool[uiType] = ui.gameObject;
+
         //ClosedUITrs하위로 위치
         ui.transform.SetParent(ClosedUITrs);
+
         //최상단 UI널로 초기화
         m_FrontUI = null;
+
         //현재 최상단에 있는 UI화면 오브젝트를 가져온다.
         var lastChild = UICanvasTrs.GetChild(UICanvasTrs.childCount - 1);
+
         //만약 UI가 존재한다면 이 UI화면 인스턴스를 최상단 UI로 대입
         if (lastChild)
         {
             m_FrontUI = lastChild.gameObject.GetComponent<BaseUI>();
+        }
+    }
+
+    //특정 UI화면이 열려있는지 확인하고 그 열려있는 UI화면을 가져오는 함수
+    //이름 신경 쓰자 이후에 이름이 달라 에러가 발생함
+    public BaseUI GetActiveUI<T>()
+    {
+        var uiType = typeof(T);
+        //m_OpenUIPool에 특정 화면 인스턴스가 존재한다면 그 화면 인스턴스를 리턴해 주고 그렇지 않으면 널 리턴
+        return m_OpenUIPool.ContainsKey(uiType) ? m_OpenUIPool[uiType].GetComponent<BaseUI>() : null;
+    }
+
+    //UI화면이 열린것이 하나라도 있는지 확인하는 함수
+    public bool ExistsOpenUI()
+    {
+        //m_FrontUI가 null인지 아닌지 확인해서 그 불값을 반환
+        return m_FrontUI != null;
+    }
+
+    public BaseUI GetCurrentFrontUI()
+    {
+        return m_FrontUI;
+    }
+
+    //가장 최상단에 있는 UI화면 인스턴스를 닫는 함수
+    public void CloseCurrentFrontUI()
+    {
+        m_FrontUI.CloseUI();
+    }
+
+    //결론적으로 열려있는 모든 UI화면을 닫으라는 함수
+    public void CloseAllOpenUI()
+    {
+        while (m_FrontUI)
+        {
+            m_FrontUI.CloseUI(true);
         }
     }
 }

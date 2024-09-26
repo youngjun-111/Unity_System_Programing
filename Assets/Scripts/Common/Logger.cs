@@ -12,7 +12,7 @@ public static class Logger
     public static void Log(string msg)
     {
         //현재 시간을 날짜와 시간의 형식으로 표현해 {0} 넣고, 로깅 하려는 메시지를 {1}에 넣는다.
-        UnityEngine.Debug.LogFormat("[{0}] {1}", System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss-fff"), msg);
+        UnityEngine.Debug.LogFormat("[{0}] [{1}]", System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss-fff"), msg);
     }
 
     [Conditional("DEV_VER")]
@@ -20,13 +20,13 @@ public static class Logger
     public static void LogWarnimg(string msg)
     {
         //현재 시간을 날짜와 시간의 형식으로 표현해 {0} 넣고, 로깅 하려는 메시지를 {1}에 넣는다.
-        UnityEngine.Debug.LogWarningFormat("[{0}] {1}", System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss-fff"), msg);
+        UnityEngine.Debug.LogWarningFormat("[{0}] [{1}]", System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss-fff"), msg);
     }
 
     //에러 로그 함수
     public static void LogError(string msg)
     {
         //현재 시간을 날짜와 시간의 형식으로 표현해 {0} 넣고, 로깅 하려는 메시지를 {1}에 넣는다.
-        UnityEngine.Debug.LogErrorFormat("[{0}] {1}", System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss-fff"), msg);
+        UnityEngine.Debug.LogErrorFormat("[{0}] [{1}]", System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss-fff"), msg);
     }
 }

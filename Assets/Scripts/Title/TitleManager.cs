@@ -41,7 +41,7 @@ public class TitleManager : MonoBehaviour
 
         //confirmUIData.ConfirmType = ConfirmType.OK;
         //confirmUIData.TitleTxt = "ConfirmUI Test";
-        //confirmUIData.DescTxt = "This Is UI Test.";
+        //confirmUIData.DescTxt = "This Is UI Test. \n Desc Area";
         //confirmUIData.OkBtnTxt = "OK";
         //UIManager.Instance.OpenUI<ConfirmUI>(confirmUIData);
 
@@ -51,6 +51,8 @@ public class TitleManager : MonoBehaviour
         //return;
 
         StartCoroutine(LoadGameCo());
+
+        
     }
 
     IEnumerator LoadGameCo()

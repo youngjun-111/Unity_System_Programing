@@ -19,7 +19,7 @@ public class UserGoodsData : IUserData
 
     public bool LoadData()
     {
-        Logger.Log($"{GetType()} : : LoadData");
+        Logger.Log($"{GetType()}::LoadData");
 
         bool result = false;
 

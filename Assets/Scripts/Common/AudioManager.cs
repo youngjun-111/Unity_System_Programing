@@ -141,6 +141,18 @@ public class AudioManager : SingletonBehaviour<AudioManager>
         m_SFXPlayer[sfx].Play();
     }
 
+    public void OnLoadUserData()
+    {
+        var userSettingsData = UserDataManager.Instance.GetUserData<UserSettingsData>();
+        if(userSettingsData != null)
+        {
+            if (!userSettingsData.Sound)
+            {
+                Mute();
+            }
+        }
+    }
+
     //효과음은 짧은 시간에 재생되고 끝나므로 따로 일시정지 등은 필요없고 뮤트만 시켜줌
     //Mute
     public void Mute()

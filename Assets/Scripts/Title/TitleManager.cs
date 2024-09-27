@@ -51,8 +51,8 @@ public class TitleManager : MonoBehaviour
         //return;
 
         StartCoroutine(LoadGameCo());
-
-        
+        //시작시 바로 실행 되어야함
+        AudioManager.Instance.OnLoadUserData();
     }
 
     IEnumerator LoadGameCo()

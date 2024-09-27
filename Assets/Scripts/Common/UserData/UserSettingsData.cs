@@ -12,14 +12,14 @@ public class UserSettingsData : IUserData
     public void SetDefaultData()
     {
         //GetType()을 호출해 클래스명 출력하고 함수명을 그대로 출력
-        Logger.Log($"{GetType()} : : SetDefaultData");
+        Logger.Log($"{GetType()}::SetDefaultData");
 
         Sound = true;
     }
 
     public bool LoadData()
     {
-        Logger.Log($"{GetType()} : : LoadData");
+        Logger.Log($"{GetType()}::LoadData");
 
         bool result = false;
         try
@@ -39,7 +39,7 @@ public class UserSettingsData : IUserData
 
     public bool SaveData()
     {
-        Logger.Log($"{GetType()} : : Save Data");
+        Logger.Log($"{GetType()}::Save Data");
 
         bool result = false;
         try

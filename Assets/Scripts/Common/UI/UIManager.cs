@@ -59,7 +59,7 @@ public class UIManager : SingletonBehaviour<UIManager>
     {
         System.Type uiType = typeof(T);
         //어떤 UI화면을 열고자 하는지 로그를 찍어줌
-        Logger.Log($"{GetType()} : : OpenUI({uiType})");
+        Logger.Log($"{GetType()}::OpenUI({uiType})");
         //이미 열려있는지 알 수 있는 변수
         bool isAlreadyOpen = false;
         var ui = GetUI<T>(out isAlreadyOpen);

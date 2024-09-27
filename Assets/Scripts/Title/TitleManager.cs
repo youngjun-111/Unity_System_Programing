@@ -53,6 +53,8 @@ public class TitleManager : MonoBehaviour
         StartCoroutine(LoadGameCo());
         //시작시 바로 실행 되어야함
         AudioManager.Instance.OnLoadUserData();
+        //타이틀씬에서는 재화표시를 꺼줘야함 UIManager에서 작성해준 함수 호출
+        UIManager.Instance.EnableGoodsUI(false);
     }
 
     IEnumerator LoadGameCo()

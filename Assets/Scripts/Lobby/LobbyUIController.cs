@@ -6,7 +6,8 @@ public class LobbyUIController : MonoBehaviour
 {
     public void Init()
     {
-
+        //로비에서는 켜줘야 하기때문에 UIManager에서 작성해준 재화 활성화 비활성화 함수 호출
+        UIManager.Instance.EnableGoodsUI(true);
     }
 
     //로비UI프리팹을 생성시켜주고, 뭐 특정 행동 했을 때 

@@ -17,6 +17,17 @@ public class UIManager : SingletonBehaviour<UIManager>
     //닫혀있는, 즉 비활성화 되어 있는 UI 화면을 담고 있는 변수(풀)
     Dictionary<System.Type, GameObject> m_ClosedUIPool = new Dictionary<System.Type, GameObject>();
 
+    GoodsUI m_GoodsUI;
+    protected override void Init()
+    {
+        base.Init();
+        //컴포넌트가 연동된 게임 오브젝트를 찾아서 GoodsUI컴포넌트를 리턴
+        m_GoodsUI = FindObjectOfType<GoodsUI>();
+        if (!m_GoodsUI)
+        {
+            Logger.Log("No stats ui component found");
+        }
+    }
     //열기를 원하는 UI 화면의 실제 인스턴스를 가져오는 함수
     //out 함수에는 한가지 값이나 참조만 반환할 수 있기 때문에
     //여러가지 값이나 참조를 반환하고 싶을 때 이렇게 out 매게변수를 사용
@@ -81,7 +92,7 @@ public class UIManager : SingletonBehaviour<UIManager>
         //이제 실제로 UI화면을 열고 데이터를 세팅해 준다.
 
         //childCount 하위에 있는 게임 오브젝트 갯수
-        var siblingIdx = UICanvasTrs.childCount;
+        var siblingIdx = UICanvasTrs.childCount - 1;
 
         //UI화면 초기화
         ui.Init(UICanvasTrs);
@@ -178,6 +189,16 @@ public class UIManager : SingletonBehaviour<UIManager>
         while (m_FrontUI)
         {
             m_FrontUI.CloseUI(true);
+        }
+    }
+
+    public void EnableGoodsUI(bool value)
+    {
+        m_GoodsUI.gameObject.SetActive(value);
+        if (value)
+        {
+            //굿즈 유아이의 함수를 불러와서 재화를 표시
+            m_GoodsUI.SetValues();
         }
     }
 }

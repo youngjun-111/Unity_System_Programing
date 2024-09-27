@@ -16,8 +16,12 @@ public class UserDataManager : SingletonBehaviour<UserDataManager>
         //싱클톤인스턴스 처리가 인잇 함수에서 실행 되기 떄문에 해줘여함.
         base.Init();
         //모든 유저 데이터를 UserDataList에 추가
+        //셋팅 데이터 - 설정창
         UserDataList.Add(new UserSettingsData());
+        //굿즈 데이터 - 재화
         UserDataList.Add(new UserGoodsData());
+        //인벤토리 데이터 - 아이템
+        UserDataList.Add(new UserInventoryData());
     }
     //모든 유저데이터를 기본 값으로 초기화 하는 함수
     public void SetDefaultUserData() 

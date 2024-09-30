@@ -97,7 +97,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
                 ItemId = Convert.ToInt32(data["item_id"]),
                 ItemName = data["item_name"].ToString(),
                 AttackPower = Convert.ToInt32(data["attack_power"]),
-                Defence = Convert.ToInt32(data["defence"]),
+                Defense = Convert.ToInt32(data["defense"]),
             };
             ItemDataTable.Add(itemData);
         }
@@ -128,7 +128,7 @@ public class ItemData
     public int ItemId;
     public string ItemName;
     public int AttackPower;
-    public int Defence;
+    public int Defense;
 }
 
 public enum ItemType

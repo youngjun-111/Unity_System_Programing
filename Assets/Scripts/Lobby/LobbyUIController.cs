@@ -20,6 +20,16 @@ public class LobbyUIController : MonoBehaviour
         var uiData = new BaseUIData();
         UIManager.Instance.OpenUI<SettingsUI>(uiData);
     }
+
+    public void OnClickProfileBtn()
+    {
+        //로그
+        Logger.Log($"{GetType()}::OnClickSettingBtn");
+        //데이터 인스턴스를 베이스유아이데이터클래스로 만들어줌
+        var uiData = new BaseUIData();
+        //UI매니저를 통해 인벤토리를 열게함
+        UIManager.Instance.OpenUI<InventoryUI>(uiData);
+    }
     private void Update()
     {
         MandleInput();

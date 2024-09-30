@@ -14,7 +14,8 @@ namespace Gpm.Ui
                 this.data = data;
             }
 
-            internal InfiniteScrollData data;
+            //접근 가능하게 프로퍼티로 변경. 대신 인피니티 스크롤 클래스 내에서만 변경이 가능하게 제한
+            public InfiniteScrollData data { get; set; }
             internal int index = -1;
 
             internal int itemIndex = -1;
@@ -314,6 +315,18 @@ namespace Gpm.Ui
                     selectCallback(data);
                 }
             }
+        }
+        //Comparison타입은 C#에서 제공하는 일정의 델리게이트
+        //이 델리게이트는 두개의 데이터컨텍스트 객체를 비교하는 매서드를 위임받게됨.
+        //그래서 comparsion파라미터에 원하는 정렬 로직을 작성해 넘겨주어
+        //그 로직대로 스크롤 아이템 목록이 정렬되도록 하겠음.
+        //타입이 테이터컨텍스트인 이유는 인피니티스크롤 컴포넌트에서
+        //내부적으로 데이터 컨텍스트라는 클래스에 데이터를 갖고있기 때문.
+        public void SortDataList(Comparison<DataContext> comparison)
+        {
+            dataList.Sort(comparison);
+            needUpdateItemList = true;
+            UpdateShowItem();
         }
     }
 }

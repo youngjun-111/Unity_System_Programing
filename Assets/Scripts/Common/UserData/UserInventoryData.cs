@@ -64,7 +64,7 @@ public class UserInventoryData : IUserData
         //실제 각 프로젝트마다 고유의 법칙으로 시리얼 넘버를 만듬
         //아이템ID와 마찬가지로 아이템에 대한 정보를 내포하면서 고유한 값을 갖는 방식으로 만듬
         //규칙이 정해진 게 아니므로 자신의 규칙으로 시리얼 넘버를 만들면 된다.
-        // InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4") 이렇게 쓱 뒤에 등급 작성
+        // InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4") 이렇게 쓰고 뒤에 등급 작성
         //현재 시간에 랜덤한 수를 붙여서 시리얼 넘버를 생성해줄거임
         //새로운 유저 아이템 데이터가를 생성환과 동시에 IN
         InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 11001));

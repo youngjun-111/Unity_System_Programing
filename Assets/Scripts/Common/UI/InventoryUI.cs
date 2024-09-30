@@ -17,6 +17,14 @@ public enum InventorySortType
 //전용 UI데이터 클래스는 만들지 않음.(UI호출 시 그냥 Base UI데이터를 사용)
 public class InventoryUI : BaseUI
 {
+    //1. 먼저 각 장착 슬롯 컴포넌트 변수를 선언
+    public EquippedItemSlot WeaponSlot;
+    public EquippedItemSlot ShieldSlot;
+    public EquippedItemSlot ChestArmorSlot;
+    public EquippedItemSlot BootsSlot;
+    public EquippedItemSlot GlovesSlot;
+    public EquippedItemSlot AccessorySlot;
+
     //스크롤 뷰를 처리해줄 인피니티 스크롤 변수
     public InfiniteScroll InventoryScrollList;
     //현재 어떤 조건으로 정렬되어 있는지 표시해줄 텍스트
@@ -28,6 +36,8 @@ public class InventoryUI : BaseUI
     {
         base.SetInfo(uiData);
 
+        //장착된 아이템에 대한 UI처리를 담당할 함수 호출
+        SetEquippedItems();
         SetInventory();
         SortInventory();
     }
@@ -100,15 +110,7 @@ public class InventoryUI : BaseUI
                     //a, b데이터를 인벤토리아이템슬롯데이터로 받아옴
                     var itemA = a.data as InventoryItemSlotData;
                     var itemB = b.data as InventoryItemSlotData;
-                    //sort by item grade
-                    //아이템 ID의 두번째 자릿수가 아이템의 등급을 나타내기 때문에 그 등급 값을 가져와서 비교
-                    //여기서 itemB등급을 기준으로 비교한 것은 그래야 내림차순으로 정렬이됨.
-                    //높은 등급에서 낮은 등급으로 정렬되기를 원하기 때문에 내림차순으로 
-                    //CompareTo : 앞, 뒤 또는 동일한지를 나타내는 정수를 반환
-                    //0보다 작음 이 인스턴스가 밸류 앞에 오는 경우 이런식임.
-                    //결과 값이 0 이라면 즉, 등급이 같다면 같은 등급내에서는
-                    //종류별로 다시 정렬을 해줘야함
-                    //종류별 정렬을 아이템 ID에서 등급을 나타내는 두번째 자릿수만을 제외한 나머지 값으로 비교
+                    //sort by item type
                     var itemAIdStr = itemA.ItemId.ToString();
                     var itemAComp = itemAIdStr.Substring(0, 1) + itemAIdStr.Substring(2, 3);
 
@@ -142,6 +144,73 @@ public class InventoryUI : BaseUI
                 break;
             default:
                 break;
+        }
+    }
+
+    //2. 장착된 아이템에 대한 UI처리를 담당할 함수 작성
+    void SetEquippedItems()
+    {
+        var userInventoryData = UserDataManager.Instance.GetUserData<UserInventoryData>();
+        if(userInventoryData == null)
+        {
+            Logger.LogError("UserInventoryData does not exist");
+            return;
+        }
+        //널이 아니면 SetItem 실행 날이면 ClearItem 실행
+
+        //무기
+        if(userInventoryData.EquippedWeaponData != null)
+        {
+            WeaponSlot.SetItem(userInventoryData.EquippedWeaponData);
+        }
+        else
+        {
+            WeaponSlot.ClearItem();
+        }
+        //방패
+        if (userInventoryData.EquippedShieldData != null)
+        {
+            ShieldSlot.SetItem(userInventoryData.EquippedShieldData);
+        }
+        else
+        {
+            ShieldSlot.ClearItem();
+        }
+        //갑옷
+        if (userInventoryData.EquippedChestArmorData != null)
+        {
+            ChestArmorSlot.SetItem(userInventoryData.EquippedChestArmorData);
+        }
+        else
+        {
+            ChestArmorSlot.ClearItem();
+        }
+        //장갑
+        if (userInventoryData.EquippedGlovesData != null)
+        {
+            GlovesSlot.SetItem(userInventoryData.EquippedGlovesData);
+        }
+        else
+        {
+            GlovesSlot.ClearItem();
+        }
+        //신발
+        if (userInventoryData.EquippedBootsData != null)
+        {
+            BootsSlot.SetItem(userInventoryData.EquippedBootsData);
+        }
+        else
+        {
+            BootsSlot.ClearItem();
+        }
+        //악세
+        if (userInventoryData.EquippedAccessoryData != null)
+        {
+            AccessorySlot.SetItem(userInventoryData.EquippedAccessoryData);
+        }
+        else
+        {
+            AccessorySlot.ClearItem();
         }
     }
 }

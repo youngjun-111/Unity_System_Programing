@@ -27,7 +27,7 @@ public class BaseUI : MonoBehaviour
     
     public virtual void Init(Transform anchor)
     {
-        Logger.Log($"{GetType()} init.");
+        Logger.Log($"{GetType()}::Init");
 
         m_OnShow = null;
         m_OnClose = null;
@@ -43,16 +43,17 @@ public class BaseUI : MonoBehaviour
 
         //기본 값으로 전부 초기화
         rectTransform.localPosition = new Vector3(0f, 0f, 0f);
-        rectTransform.localScale = new Vector3(1f, 1f, 1f);
-        rectTransform.offsetMin = new Vector2(0, 0);
-        rectTransform.offsetMax = new Vector2(0, 0);
+        rectTransform.localPosition = Vector3.zero;
+        rectTransform.localScale = Vector3.one;
+        rectTransform.offsetMin = Vector3.zero;
+        rectTransform.offsetMax = Vector3.zero;
     }
 
     public virtual void SetInfo(BaseUIData uiData)
     {
-        Logger.Log($"{GetType()} set info ");
-        m_OnShow += uiData.OnShow;
-        m_OnClose += uiData.OnClose;
+        Logger.Log($"{GetType()}::SetInfo");
+        m_OnShow = uiData.OnShow;
+        m_OnClose = uiData.OnClose;
     }
 
     //UI 화면을 실제로 열어서 화면에 표시해 주는 함수
@@ -85,7 +86,7 @@ public class BaseUI : MonoBehaviour
 
         //CloseUI에 이 인스턴스를 매개변수로 넣어줌
         //닫을 때 호출 될때 진짜 닫아줌
-        //UIManager.Instance.CloseUI(this);
+        UIManager.Instance.CloseUI(this);
     }
 
     //닫기 버튼을 눌렀을 때 실행하는 함수

@@ -53,9 +53,19 @@ public class UserInventoryItemDataListWrapper
 
 public class UserInventoryData : IUserData
 {
+
+    //1. 먼저 각 장착 슬롯의 변수들을 선언함
+    //2. 장착하고 있는 아이템의 정보를 저장해야함.
+    //3. 장착한 아이템의 스텟을 유저에게 적용 시켜 줘야함
+    public UserItemData EquippedWeaponData { get; set; }
+    public UserItemData EquippedShieldData { get; set; }
+    public UserItemData EquippedChestArmorData { get; set; }
+    public UserItemData EquippedBootsData { get; set; }
+    public UserItemData EquippedGlovesData { get; set; }
+    public UserItemData EquippedAccessoryData { get; set; }
+
     public List<UserItemData> InventoryItemDataList { get; set; } = new List<UserItemData>();
 
-    
     public void SetDefaultData()
     {
         Logger.Log($"{GetType()}::SetDefaultData");
@@ -67,17 +77,38 @@ public class UserInventoryData : IUserData
         // InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4") 이렇게 쓰고 뒤에 등급 작성
         //현재 시간에 랜덤한 수를 붙여서 시리얼 넘버를 생성해줄거임
         //새로운 유저 아이템 데이터가를 생성환과 동시에 IN
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 11001));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 11002));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 21001));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 21002));
+        //_Temp_1
+        //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 11001));
+        //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 11002));
+        //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 21001));
+        //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 21002));
+        //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 31001));
+        //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 31002));
+        //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 41001));
+        //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 41002));
+        //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 51001));
+        //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 51002));
+        //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 61001));
+        //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 61002));
+
+        //_Temp_2
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 13001));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 13002));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 14001));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 14002));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 15002));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 15001));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 25002));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 25001));
         InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 31001));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 41001));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 41002));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 51001));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 51002));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 61001));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 61002));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 32002));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 42001));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 42002));
+        
+        //기본적으로 무기와 방패를 들고 시작하게 해당하는 슬롯에 해당되는 아이템이 들어가게
+        //이건 넣기만한것 이제 UI에서 보여지게 해야함
+        EquippedWeaponData = new UserItemData(InventoryItemDataList[0].SerialNumber, InventoryItemDataList[0].ItemId);
+        EquippedShieldData = new UserItemData(InventoryItemDataList[2].SerialNumber, InventoryItemDataList[2].ItemId);
     }
 
     public bool LoadData()
@@ -86,6 +117,54 @@ public class UserInventoryData : IUserData
         bool result = false;
         try
         {
+            //2)이제 장착 아이템 데이터를 로드하는 로직을 작성
+            //무기 슬롯 데이터를 로드
+            //플레이어 프랩스에서 장비데이터로 저장되어 있는 문자열 데이터가
+            //있다면(장착한 아이템이란뜻)
+
+            //무기
+            string weaponJson = PlayerPrefs.GetString("EquippedWeaponData");
+            if (!string.IsNullOrEmpty(weaponJson))
+            {
+                EquippedWeaponData = JsonUtility.FromJson<UserItemData>(weaponJson);
+                Logger.Log($"EquippedWeaponData: SN:{EquippedWeaponData.SerialNumber} ItemID{EquippedWeaponData.ItemId}");
+            }
+            //방패
+            string shieldJson = PlayerPrefs.GetString("EquippedShieldData");
+            if (!string.IsNullOrEmpty(weaponJson))
+            {
+                EquippedShieldData = JsonUtility.FromJson<UserItemData>(shieldJson);
+                Logger.Log($"EquippedShieldData: SN:{EquippedShieldData.SerialNumber} ItemID{EquippedShieldData.ItemId}");
+            }
+            //갑옷
+            string chestArmorJson  = PlayerPrefs.GetString("EquippedChestArmorData");
+            if (!string.IsNullOrEmpty(chestArmorJson))
+            {
+                EquippedChestArmorData  = JsonUtility.FromJson<UserItemData>(chestArmorJson);
+                Logger.Log($"EquippedChestArmorData: SN:{EquippedChestArmorData.SerialNumber} ItemID{EquippedChestArmorData.ItemId}");
+            }
+            //장갑
+            string glovesJson = PlayerPrefs.GetString("EquippedGlovesData");
+            if (!string.IsNullOrEmpty(glovesJson))
+            {
+                EquippedGlovesData = JsonUtility.FromJson<UserItemData>(glovesJson);
+                Logger.Log($"EquippedGlovesData: SN:{EquippedGlovesData.SerialNumber} ItemID{EquippedGlovesData.ItemId}");
+            }
+            //부츠
+            string bootsJson  = PlayerPrefs.GetString("EquippedBootsData");
+            if (!string.IsNullOrEmpty(bootsJson))
+            {
+                EquippedBootsData = JsonUtility.FromJson<UserItemData>(bootsJson);
+                Logger.Log($"EquippedBootsData: SN:{EquippedBootsData.SerialNumber} ItemID{EquippedBootsData.ItemId}");
+            }
+            //악세서리
+            string accessoryJson  = PlayerPrefs.GetString("EquippedAccessoryData");
+            if (!string.IsNullOrEmpty(accessoryJson))
+            {
+                EquippedAccessoryData = JsonUtility.FromJson<UserItemData>(accessoryJson);
+                Logger.Log($"EquippedAccessoryData: SN:{EquippedAccessoryData.SerialNumber} ItemID{EquippedAccessoryData.ItemId}");
+            }
+
             //이벤토리아이템디어타 리스트로 저정된 스트링 값이 있는지 확인
             //만약 데이터가 존재한다면 제이슨유틸리티 클래스를 이용해 
             //위에서 만든 래퍼클래스로 저장된 데이터를 받아옴 InventoryItemDataList : 저장한 Key 값
@@ -121,6 +200,53 @@ public class UserInventoryData : IUserData
 
         try
         {
+            //3이제 반대로 장착 아이템 데이터를 저장하는 로직을 작성
+            //장비데이터가 널이어도 장착한 아이템이없어도
+            //반드시 반환해서 저장해 주어야함
+
+            //무기
+            string weponJson = JsonUtility.ToJson(EquippedWeaponData);
+            PlayerPrefs.SetString("EquippedWeaponData", weponJson);
+            if(EquippedWeaponData != null)
+            {
+                Logger.Log($"EquippedWeaponData: SN:{EquippedWeaponData.SerialNumber} ItemID{EquippedWeaponData.ItemId}");
+            }
+            //방패
+            string shieldJson = JsonUtility.ToJson(EquippedShieldData);
+            PlayerPrefs.SetString("EquippedShieldData", shieldJson);
+            if (EquippedShieldData != null)
+            {
+                Logger.Log($"EquippedShieldData: SN:{EquippedShieldData.SerialNumber} ItemID{EquippedShieldData.ItemId}");
+            }
+            //갑옷
+            string chestArmorJson = JsonUtility.ToJson(EquippedChestArmorData);
+            PlayerPrefs.SetString("EquippedChestArmorData", chestArmorJson);
+            if (EquippedChestArmorData != null)
+            {
+                Logger.Log($"EquippedChestArmorData: SN:{EquippedChestArmorData.SerialNumber} ItemID{EquippedChestArmorData.ItemId}");
+            }
+            //장갑
+            string glovesJson = JsonUtility.ToJson(EquippedGlovesData);
+            PlayerPrefs.SetString("EquippedGlovesData", glovesJson);
+            if (EquippedGlovesData != null)
+            {
+                Logger.Log($"EquippedGlovesData: SN:{EquippedGlovesData.SerialNumber} ItemID{EquippedGlovesData.ItemId}");
+            }
+            //부츠
+            string bootsJson = JsonUtility.ToJson(EquippedBootsData);
+            PlayerPrefs.SetString("EquippedBootsData", bootsJson);
+            if (EquippedBootsData != null)
+            {
+                Logger.Log($"EquippedBootsData: SN:{EquippedBootsData.SerialNumber} ItemID{EquippedBootsData.ItemId}");
+            }
+            //악세서리
+            string accessoryJson = JsonUtility.ToJson(EquippedAccessoryData);
+            PlayerPrefs.SetString("EquippedAccessoryData", accessoryJson);
+            if (EquippedAccessoryData != null)
+            {
+                Logger.Log($"EquippedAccessoryData: SN:{EquippedAccessoryData.SerialNumber} ItemID{EquippedAccessoryData.ItemId}");
+            }
+
             //저장에 필요한 랩퍼 클래스 인스턴스를 생성
             //그 인스턴스 안에 있는 아이템 데이터리스트에 유저가 현재 보유한 
             //인벤토리 아이템 정보를 담고 있는 인벤토리 아이템 데이터 리스트를 대입

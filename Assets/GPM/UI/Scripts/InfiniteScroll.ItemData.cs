@@ -15,7 +15,10 @@ namespace Gpm.Ui
             }
 
             //접근 가능하게 프로퍼티로 변경. 대신 인피니티 스크롤 클래스 내에서만 변경이 가능하게 제한
+            //원래는 internal이었음.
             public InfiniteScrollData data { get; set; }
+            //이게 퍼블릭이어야 인피니티스크롤데이터가 필요하기 때문에
+            //intenal : 그냥 변수 타입이다.
             internal int index = -1;
 
             internal int itemIndex = -1;

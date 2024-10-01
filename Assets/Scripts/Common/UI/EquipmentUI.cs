@@ -9,7 +9,7 @@ public class EquipmentUIData : BaseUIData
 {
     public long SerialNuber;
     public int ItemId;
-    public bool IsEquipped = false;
+    public bool IsEquipped;
 }
 public class EquipmentUI : BaseUI
 {
@@ -55,7 +55,7 @@ public class EquipmentUI : BaseUI
         //추출한 아이템 등급 정보로 아이템 등급 이미지 로드
         var gradeBgTexture = Resources.Load<Texture2D>($"Textures/{itemGrade}");
         //이미지가 잘 로드 되어있으면 아이템 그레이드이미지 컴포넌트에 세팅
-        if(gradeBgTexture != null)
+        if (gradeBgTexture != null)
         {
             ItemGradeBg.sprite = Sprite.Create(gradeBgTexture, new Rect(0, 0, gradeBgTexture.width, gradeBgTexture.height), new Vector2(1f, 1f));
         }

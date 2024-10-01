@@ -75,6 +75,7 @@ public class InventoryUI : BaseUI
         //유저가 보유한 아이템을 스크롤 뷰에 만들자
         //우선 유저 인벤토리 데이터를 유저 데이터매니저에서 가져옴
         var userInventoryData = UserDataManager.Instance.GetUserData<UserInventoryData>();
+     
         if(userInventoryData != null)
         {
             //순회하며 각 아이템에 대해서 아이템 슬롯 인스턴스를 만들어준다.
@@ -86,7 +87,6 @@ public class InventoryUI : BaseUI
                 {
                     continue;
                 }
-
                 //실제로 슬롯에 있는 데이터를 실제 아이템 데이터를 넣어주기
                 var itemSlotData = new InventoryItemSlotData();
                 itemSlotData.SerialNumber = itemData.SerialNumber;

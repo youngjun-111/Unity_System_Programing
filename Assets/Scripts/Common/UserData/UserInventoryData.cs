@@ -50,6 +50,7 @@ public class UserInventoryItemDataListWrapper
 {
     public List<UserItemData> InventoryItemDataList;
 }
+
 //2. 아이템의 공격력과 방어력을 모아놓은 새로운 클래스
 public class UserItemStats
 {
@@ -91,6 +92,7 @@ public class UserInventoryData : IUserData
         // InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4") 이렇게 쓰고 뒤에 등급 작성
         //현재 시간에 랜덤한 수를 붙여서 시리얼 넘버를 생성해줄거임
         //새로운 유저 아이템 데이터가를 생성환과 동시에 IN
+        #region 테스트
         //_Temp_1
         //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 11001));
         //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 11002));
@@ -104,6 +106,7 @@ public class UserInventoryData : IUserData
         //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 51002));
         //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 61001));
         //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 61002));
+        #endregion
 
         //_Temp_2
         InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 15001));

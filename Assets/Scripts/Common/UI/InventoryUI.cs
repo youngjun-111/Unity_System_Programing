@@ -66,6 +66,7 @@ public class InventoryUI : BaseUI
     }
     #endregion
 
+    #region 인벤토리 갱신 정렬
     void SetInventory()
     {
         //UI화면을 재활용하기 때문에 새롭게 세팅할 때마다 삭제처리를 해주지 않으면
@@ -176,9 +177,12 @@ public class InventoryUI : BaseUI
             default:
                 break;
         }
+        //인벤토리 정렬 갱신
         SortInventory();
     }
+    #endregion
 
+    #region 아이템 탈부착
     //2. 장착된 아이템에 대한 UI처리를 담당할 함수 작성
     void SetEquippedItems()
     {
@@ -279,8 +283,11 @@ public class InventoryUI : BaseUI
                 AccessorySlot.SetItem(userInventoryData.EquippedAccessoryData);
                 break;
         }
+        //스텟 적용
         SetUserStats();
+        //인벤토리 갱신
         SetInventory();
+        //인벤토리 정렬 갱신
         SortInventory();
     }
 
@@ -311,8 +318,12 @@ public class InventoryUI : BaseUI
             default:
                 break;
         }
+        //스텟 적용
         SetUserStats();
+        //인벤토리 갱신
         SetInventory();
+        //인벤토리 정렬 갱신
         SortInventory();
     }
+    #endregion
 }

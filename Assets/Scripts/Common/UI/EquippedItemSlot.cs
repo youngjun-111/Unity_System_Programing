@@ -63,6 +63,16 @@ public class EquippedItemSlot : MonoBehaviour
         var uiData = new EquipmentUIData();
         uiData.SerialNuber = m_EquippedItemData.SerialNumber;
         uiData.ItemId = m_EquippedItemData.ItemId;
+
+        if(uiData == null)
+        {
+            uiData.IsEquipped = false;
+        }
+        else
+        {
+            uiData.IsEquipped = true;
+        }
+
         UIManager.Instance.OpenUI<EquipmentUI>(uiData);
     }
 }

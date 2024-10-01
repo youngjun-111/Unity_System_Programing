@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5304947654209453314}
   - component: {fileID: 8154720309743639772}
   m_Layer: 5
-  m_Name: EquippedItemGradeBg_01
+  m_Name: EquippedItemGradeBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3147,7 +3147,7 @@ GameObject:
   - component: {fileID: 7486644670416698832}
   - component: {fileID: 3629943792892950908}
   - component: {fileID: 8256462862302729733}
-  - component: {fileID: 4297591513047932391}
+  - component: {fileID: 8234478038691371576}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -3243,7 +3243,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4297591513047932391
+--- !u!114 &8234478038691371576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3271,7 +3271,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 804834456573388451, guid: 1f8f4741684e91a408cfc0b4291ce32f, type: 3}
   dynamicItemSize: 0
   layout:
-    axis: 2
+    axis: 1
     padding: {x: 100, y: 0}
     space: {x: 0, y: 20}
     topToBotton: 1
@@ -4068,8 +4068,10 @@ MonoBehaviour:
   BootsSlot: {fileID: 5021336871045248515}
   GlovesSlot: {fileID: 1353164649752768495}
   AccessorySlot: {fileID: 174315817149163003}
-  InventoryScrollList: {fileID: 4297591513047932391}
+  InventoryScrollList: {fileID: 8234478038691371576}
   SortBtnTxt: {fileID: 7206056449295334989}
+  AttackPowerAmountTxt: {fileID: 5593740923362549781}
+  DefenseAmountTxt: {fileID: 1413027110217925779}
 --- !u!1 &6885175925510113217
 GameObject:
   m_ObjectHideFlags: 0

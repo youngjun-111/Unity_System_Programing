@@ -40,18 +40,29 @@ public class InventoryUI : BaseUI
     {
         base.SetInfo(uiData);
 
+        //유저의 모든 스텟을 셋
         SetUserStats();
-        //장착된 아이템에 대한 UI처리를 담당할 함수 호출
+        //장착된 아이템 셋
         SetEquippedItems();
+        //인벤토리 처음 셋
         SetInventory();
+        //인벤토리 처음 정렬
         SortInventory();
     }
 
     #region 유저 스텟 초기, 장착, 탈착
-    public void SetUserStats()
+    void SetUserStats()
     {
         //유저 인벤토리 가져오고
         var userInvetoryData = UserDataManager.Instance.GetUserData<UserInventoryData>();
+        if(userInvetoryData == null)
+        {
+            Logger.Log("UserInventory does is not exist.");
+            return;
+        }
+        var userTotalItemStats = userInvetoryData.GetUserTotalItemStats();
+        AttackPowerAmountTxt.text = $"+{userTotalItemStats.AttackPower.ToString("N0")}";
+        DefenseAmountTxt.text = $"+{userTotalItemStats.Defense.ToString("N0")}";
     }
     #endregion
 
@@ -268,6 +279,7 @@ public class InventoryUI : BaseUI
                 AccessorySlot.SetItem(userInventoryData.EquippedAccessoryData);
                 break;
         }
+        SetUserStats();
         SetInventory();
         SortInventory();
     }
@@ -299,6 +311,7 @@ public class InventoryUI : BaseUI
             default:
                 break;
         }
+        SetUserStats();
         SetInventory();
         SortInventory();
     }

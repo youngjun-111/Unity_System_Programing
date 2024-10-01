@@ -9,7 +9,7 @@ public class EquipmentUIData : BaseUIData
 {
     public long SerialNuber;
     public int ItemId;
-    public bool IsEquipped;
+    public bool IsEquipped = false;
 }
 public class EquipmentUI : BaseUI
 {
@@ -117,11 +117,13 @@ public class EquipmentUI : BaseUI
             Logger.Log("UserInventoryData does not exist.");
             return;
         }
+
         //장착 중이면 탈착 가능하게
         if (m_EquipmentUIData.IsEquipped)
         {
             userInventoryData.UnequipItem(m_EquipmentUIData.SerialNuber, m_EquipmentUIData.ItemId);
         }
+
         //탈착 했을 때 장착이 다시 가능하게
         else
         {

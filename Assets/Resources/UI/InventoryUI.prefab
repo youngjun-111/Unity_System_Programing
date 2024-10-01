@@ -642,6 +642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AddIcon: {fileID: 6885175925592234734}
   EquippedItemIcon: {fileID: 5749779168961677195}
+  EquippedItemGradeBg: {fileID: 3534625708955215961}
 --- !u!1 &1421343928062110577
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AddIcon: {fileID: 1421343928953410862}
   EquippedItemIcon: {fileID: 7238058659691581733}
+  EquippedItemGradeBg: {fileID: 1001096448239158113}
 --- !u!1 &1421343928185518953
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AddIcon: {fileID: 1421343928185518955}
   EquippedItemIcon: {fileID: 6753481612176918181}
+  EquippedItemGradeBg: {fileID: 5263936203409632737}
 --- !u!1 &1421343928953410860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,6 +1146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AddIcon: {fileID: 2446669339634365040}
   EquippedItemIcon: {fileID: 4361652167184650514}
+  EquippedItemGradeBg: {fileID: 8154720309743639772}
 --- !u!1 &1421343929311168571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,6 +1239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AddIcon: {fileID: 1421343928486353800}
   EquippedItemIcon: {fileID: 5919147764813637736}
+  EquippedItemGradeBg: {fileID: 1543798695246233676}
 --- !u!1 &1421343929432549860
 GameObject:
   m_ObjectHideFlags: 0
@@ -4157,6 +4162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AddIcon: {fileID: 8261674720839452555}
   EquippedItemIcon: {fileID: 2671665338094967189}
+  EquippedItemGradeBg: {fileID: 2036619225497191564}
 --- !u!1 &6885175925592234732
 GameObject:
   m_ObjectHideFlags: 0

@@ -106,10 +106,10 @@ public class UserInventoryData : IUserData
         //InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 61002));
 
         //_Temp_2
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 13001));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 13002));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 14001));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 15001));
         InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 14002));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 25001));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 24002));
         InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 15002));
         InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 15001));
         InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 25002));
@@ -123,6 +123,9 @@ public class UserInventoryData : IUserData
         //이건 넣기만한것 이제 UI에서 보여지게 해야함
         EquippedWeaponData = new UserItemData(InventoryItemDataList[0].SerialNumber, InventoryItemDataList[0].ItemId);
         EquippedShieldData = new UserItemData(InventoryItemDataList[2].SerialNumber, InventoryItemDataList[2].ItemId);
+        //6. 게임을 처음 실행했을 때는 저장되어 있는 아이템을 로딩하는 것이 아니라
+        //디폴트로 호출해서 장착된 아이템이 딕셔너리에 추가 되게
+        SetEquippedItemDic();
     }
 
     public bool LoadData()
@@ -197,6 +200,8 @@ public class UserInventoryData : IUserData
                     Logger.Log($"SerialNumber:{item.SerialNumber} ItemId:{item.ItemId}");
                 }
             }
+            //5. 유저 인벤토리를 로드할 시 모든 로딩이 끝나고 나면 함수를 호출해서 담음
+            SetEquippedItemDic();
             result = true;
         }
         catch(Exception e)
@@ -286,6 +291,72 @@ public class UserInventoryData : IUserData
         }
 
         return result;
+    }
+
+    //3. 각 장착 슬롯 데이터를 확인해서 장착된 아이템이 있다면 필요한 전보를 가공해서
+    //딕셔너리에 추가
+    public void SetEquippedItemDic()
+    {
+        //무기
+        if(EquippedWeaponData != null)
+        {
+            var itemData = DataTableManager.Instance.GetItemData(EquippedWeaponData.ItemId);
+            if(itemData != null)
+            {
+                EquippedItemDic.Add(EquippedWeaponData.SerialNumber, new UserItemStats(itemData.AttackPower, itemData.Defense));
+            }
+        }
+        //방패
+        if (EquippedShieldData != null)
+        {
+            var itemData = DataTableManager.Instance.GetItemData(EquippedShieldData.ItemId);
+            if (itemData != null)
+            {
+                EquippedItemDic.Add(EquippedShieldData.SerialNumber, new UserItemStats(itemData.AttackPower, itemData.Defense));
+            }
+        }
+        //방어구
+        if (EquippedChestArmorData != null)
+        {
+            var itemData = DataTableManager.Instance.GetItemData(EquippedChestArmorData.ItemId);
+            if (itemData != null)
+            {
+                EquippedItemDic.Add(EquippedChestArmorData.SerialNumber, new UserItemStats(itemData.AttackPower, itemData.Defense));
+            }
+        }
+        //장갑
+        if (EquippedGlovesData != null)
+        {
+            var itemData = DataTableManager.Instance.GetItemData(EquippedGlovesData.ItemId);
+            if (itemData != null)
+            {
+                EquippedItemDic.Add(EquippedGlovesData.SerialNumber, new UserItemStats(itemData.AttackPower, itemData.Defense));
+            }
+        }
+        //신발
+        if (EquippedBootsData != null)
+        {
+            var itemData = DataTableManager.Instance.GetItemData(EquippedBootsData.ItemId);
+            if (itemData != null)
+            {
+                EquippedItemDic.Add(EquippedBootsData.SerialNumber, new UserItemStats(itemData.AttackPower, itemData.Defense));
+            }
+        }
+        //악세
+        if (EquippedAccessoryData != null)
+        {
+            var itemData = DataTableManager.Instance.GetItemData(EquippedAccessoryData.ItemId);
+            if (itemData != null)
+            {
+                EquippedItemDic.Add(EquippedAccessoryData.SerialNumber, new UserItemStats(itemData.AttackPower, itemData.Defense));
+            }
+        }
+    }
+
+    //4. 특정 아이템이 장착되어 있는지 여부를 확인하는 함수
+    public bool IsEquipped(long serialNumber)
+    {
+        return EquippedItemDic.ContainsKey(serialNumber);
     }
 }
 

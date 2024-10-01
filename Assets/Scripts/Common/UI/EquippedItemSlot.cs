@@ -6,8 +6,6 @@ using System;
 using TMPro;
 using System.Text;
 
-
-
 public class EquippedItemSlot : MonoBehaviour
 {
     //장착된 아이템이 없으면 + 표시의 아이콘

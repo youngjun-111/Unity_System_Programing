@@ -376,8 +376,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -80.5, y: -3.9999976}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 11.7123, y: -0.000018358}
+  m_SizeDelta: {x: 376.5753, y: 89.342}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2180642331270726090
 CanvasRenderer:
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +300
+  m_text: + 300
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 110ce30496d2b1843aa9fc04521e53b9, type: 2}
   m_sharedMaterial: {fileID: 3249717732731881229, guid: 110ce30496d2b1843aa9fc04521e53b9, type: 2}
@@ -660,8 +660,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25.2, y: 44}
-  m_SizeDelta: {x: 305.51923, y: 66.59253}
+  m_AnchoredPosition: {x: -47.24, y: 74.984}
+  m_SizeDelta: {x: 305.5192, y: 60.625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2180642331498469981
 CanvasRenderer:
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 2.1295166}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -915,6 +915,7 @@ MonoBehaviour:
   ItemNameTxt: {fileID: 2180642332043355331}
   AttackPowerAmountTxt: {fileID: 2180642332867396455}
   DefenseAmountTxt: {fileID: 2180642331270726093}
+  EquipBtnTxt: {fileID: 2180642332428886416}
 --- !u!1 &2180642332043355333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,7 +1171,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2180642332070407508}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4436989537725168954}
+        m_TargetAssemblyTypeName: EquipmentUI, Assembly-CSharp
+        m_MethodName: OnClickEquipBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &9168409472410559563
 Animator:
   serializedVersion: 5
@@ -1301,8 +1314,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25.2, y: 40}
-  m_SizeDelta: {x: 305.51923, y: 66.59253}
+  m_AnchoredPosition: {x: -47.24, y: 68.72497}
+  m_SizeDelta: {x: 305.5192, y: 48.1069}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2180642332374344242
 CanvasRenderer:
@@ -1512,8 +1525,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.8, y: 12}
-  m_SizeDelta: {x: 170.91736, y: 76.16812}
+  m_AnchoredPosition: {x: 0.0000076288, y: 7.4534}
+  m_SizeDelta: {x: 350, y: 130.0933}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2180642332428886417
 CanvasRenderer:
@@ -1722,8 +1735,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -80, y: -2}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 10.647797, y: -0.000032425}
+  m_SizeDelta: {x: 378.7048, y: 89.342}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2180642332867396452
 CanvasRenderer:
@@ -1753,7 +1766,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +50
+  m_text: + 50
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 110ce30496d2b1843aa9fc04521e53b9, type: 2}
   m_sharedMaterial: {fileID: 3249717732731881229, guid: 110ce30496d2b1843aa9fc04521e53b9, type: 2}

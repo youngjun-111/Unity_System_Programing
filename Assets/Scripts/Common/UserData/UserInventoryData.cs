@@ -110,19 +110,20 @@ public class UserInventoryData : IUserData
         InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 14002));
         InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 25001));
         InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 24002));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 15002));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 15001));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 25002));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 25001));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 31001));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 32002));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 42001));
-        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 42002));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 35002));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 35001));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 45002));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 45001));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 51001));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 52002));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 62001));
+        InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 62002));
         
         //기본적으로 무기와 방패를 들고 시작하게 해당하는 슬롯에 해당되는 아이템이 들어가게
         //이건 넣기만한것 이제 UI에서 보여지게 해야함
         EquippedWeaponData = new UserItemData(InventoryItemDataList[0].SerialNumber, InventoryItemDataList[0].ItemId);
         EquippedShieldData = new UserItemData(InventoryItemDataList[2].SerialNumber, InventoryItemDataList[2].ItemId);
+        EquippedGlovesData = new UserItemData(InventoryItemDataList[7].SerialNumber, InventoryItemDataList[7].ItemId);
         //6. 게임을 처음 실행했을 때는 저장되어 있는 아이템을 로딩하는 것이 아니라
         //디폴트로 호출해서 장착된 아이템이 딕셔너리에 추가 되게
         SetEquippedItemDic();
@@ -358,5 +359,119 @@ public class UserInventoryData : IUserData
     {
         return EquippedItemDic.ContainsKey(serialNumber);
     }
-}
 
+    //아이템 장착 처리해줄 함수
+    public void EquipItem(long serialNumber, int itemId)
+    {
+        //데이터테이블에서 해당 아이템에 대한 데이터를 가져온다.
+        var itemData = DataTableManager.Instance.GetItemData(itemId);
+        //없으면 에러
+        if(itemData == null)
+        {
+            Logger.LogError($"Item data does not exist. ItemId:{itemId}");
+            return;
+        }
+        //아이템 종류 추출
+        var itemTpye = (ItemType)(itemId / 10000);
+        //아이템 종류에 따라 분기
+        switch (itemTpye)
+        {
+            case ItemType.Weapon:
+                if(EquippedWeaponData != null)
+                {
+                    EquippedItemDic.Remove(EquippedWeaponData.SerialNumber);
+                    EquippedWeaponData = null;
+                }
+                EquippedWeaponData = new UserItemData(serialNumber, itemId);
+                break;
+            case ItemType.Shield:
+                if (EquippedShieldData != null)
+                {
+                    EquippedItemDic.Remove(EquippedShieldData.SerialNumber);
+                    EquippedShieldData = null;
+                }
+                EquippedShieldData = new UserItemData(serialNumber, itemId);
+                break;
+            case ItemType.ChestArmor:
+                if (EquippedChestArmorData != null)
+                {
+                    EquippedItemDic.Remove(EquippedChestArmorData.SerialNumber);
+                    EquippedChestArmorData = null;
+                }
+                EquippedChestArmorData = new UserItemData(serialNumber, itemId);
+                break;
+            case ItemType.Gloves:
+                if (EquippedGlovesData != null)
+                {
+                    EquippedItemDic.Remove(EquippedGlovesData.SerialNumber);
+                    EquippedGlovesData = null;
+                }
+                EquippedGlovesData = new UserItemData(serialNumber, itemId);
+                break;
+            case ItemType.Boots:
+                if (EquippedBootsData != null)
+                {
+                    EquippedItemDic.Remove(EquippedBootsData.SerialNumber);
+                    EquippedBootsData = null;
+                }
+                EquippedBootsData = new UserItemData(serialNumber, itemId);
+                break;
+            case ItemType.Accessory:
+                if (EquippedAccessoryData != null)
+                {
+                    EquippedItemDic.Remove(EquippedAccessoryData.SerialNumber);
+                    EquippedAccessoryData = null;
+                }
+                EquippedAccessoryData = new UserItemData(serialNumber, itemId);
+                break;
+            default:
+                break;
+        }
+        EquippedItemDic.Add(serialNumber, new UserItemStats(itemData.AttackPower, itemData.Defense));
+    }
+
+    //아이템 탈착 함수
+    public void UnequipItem(long serialNumber, int itemId)
+    {
+        var itemType = (ItemType)(itemId / 10000);
+        switch (itemType)
+        {
+            case ItemType.Weapon:
+                EquippedWeaponData = null;
+                break;
+            case ItemType.Shield:
+                EquippedShieldData = null;
+                break;
+            case ItemType.ChestArmor:
+                EquippedChestArmorData = null;
+                break;
+            case ItemType.Gloves:
+                EquippedGlovesData = null;
+                break;
+            case ItemType.Boots:
+                EquippedBootsData = null;
+                break;
+            case ItemType.Accessory:
+                EquippedAccessoryData = null;
+                break;
+            default:
+                break;
+        }
+        //딕셔너리에서 삭제
+        EquippedItemDic.Remove(serialNumber);
+    }
+
+    //유저가 현재 장착한 아이템 스탯의 총합을 구하는 함수
+    public UserItemStats GetUserTotalItemStats()
+    {
+        var totalAttackPower = 0;
+        var totalDefense = 0;
+
+        foreach (var item in EquippedItemDic)
+        {
+            totalAttackPower += item.Value.AttackPower;
+            totalDefense += item.Value.Defense;
+        }
+        return new UserItemStats(totalAttackPower, totalDefense);
+    }
+}

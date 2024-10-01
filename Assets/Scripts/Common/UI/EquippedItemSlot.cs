@@ -30,7 +30,7 @@ public class EquippedItemSlot : MonoBehaviour
 
         //아이템 등급에 맞는 이미지 로드해서 셋팅
         var itemGrade = (ItemGrade) ((m_EquippedItemData.ItemId / 1000) % 10);
-        var gradeBgTexture = Resources.Load<Texture2D>($"Texture/{itemGrade}");
+        var gradeBgTexture = Resources.Load<Texture2D>($"Textures/{itemGrade}");
         if(gradeBgTexture != null)
         {
             EquippedItemGradeBg.sprite = Sprite.Create(gradeBgTexture, new Rect(0,0, gradeBgTexture.width, gradeBgTexture.height), new Vector2(1f,1f));

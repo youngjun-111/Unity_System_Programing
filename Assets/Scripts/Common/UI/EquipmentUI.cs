@@ -24,9 +24,10 @@ public class EquipmentUI : BaseUI
     //아이템 스텟 텍스트( 공격력, 방어력)
     public TextMeshProUGUI AttackPowerAmountTxt;
     public TextMeshProUGUI DefenseAmountTxt;
+    //버튼 텍스트
+    public TextMeshProUGUI EquipBtnTxt;
 
     EquipmentUIData m_EquipmentUIData;
-
 
     public override void SetInfo(BaseUIData uiData)
     {
@@ -102,5 +103,49 @@ public class EquipmentUI : BaseUI
         ItemNameTxt.text = itemData.ItemName;
         AttackPowerAmountTxt.text = $"+{itemData.AttackPower}";
         DefenseAmountTxt.text = $"+{itemData.Defense}";
+        //트루면 탈착, 펄스면 장착
+        EquipBtnTxt.text = m_EquipmentUIData.IsEquipped ? "Unequip" : "Equip";
+    }
+    //탈착 장착 버튼을 눌렀을 때 호출 할 함수
+    public void OnClickEquipBtn()
+    {
+        //유저인벤토리데이터를 가저옴
+        var userInventoryData = UserDataManager.Instance.GetUserData<UserInventoryData>();
+        //널이면 애러
+        if(userInventoryData == null)
+        {
+            Logger.Log("UserInventoryData does not exist.");
+            return;
+        }
+        //장착 중이면 탈착 가능하게
+        if (m_EquipmentUIData.IsEquipped)
+        {
+            userInventoryData.UnequipItem(m_EquipmentUIData.SerialNuber, m_EquipmentUIData.ItemId);
+        }
+        //탈착 했을 때 장착이 다시 가능하게
+        else
+        {
+            userInventoryData.EquipItem(m_EquipmentUIData.SerialNuber, m_EquipmentUIData.ItemId);
+        }
+
+        //유저 인벤토리 데이터에 변경점을 저장
+        userInventoryData.SaveData();
+        //아이템 장착 또는 탈착 했을 때는 인벤토리UI를 갱신도 해줘야함
+        var inventoryUI = UIManager.Instance.GetActiveUI<InventoryUI>() as InventoryUI;
+        //열려 있으면
+        if(inventoryUI != null)
+        {
+            //장착 여부에 따른 UI처리 함수를 호출해 주겠음.
+            if (m_EquipmentUIData.IsEquipped)
+            {
+                inventoryUI.OnUnequipItem(m_EquipmentUIData.ItemId);
+            }
+            else
+            {
+                inventoryUI.OnEquipItem(m_EquipmentUIData.ItemId);
+            }
+        }
+        //장착하면 장착하고 UI는 닫아줌
+        CloseUI();
     }
 }

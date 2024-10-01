@@ -50,13 +50,24 @@ public class UserInventoryItemDataListWrapper
 {
     public List<UserItemData> InventoryItemDataList;
 }
+//2. 아이템의 공격력과 방어력을 모아놓은 새로운 클래스
+public class UserItemStats
+{
+    public int AttackPower;
+    public int Defense;
+    //생성자
+    public UserItemStats(int attackPower, int defense)
+    {
+        AttackPower = attackPower;
+        Defense = defense;
+    }
+}
 
 public class UserInventoryData : IUserData
 {
 
     //1. 먼저 각 장착 슬롯의 변수들을 선언함
     //2. 장착하고 있는 아이템의 정보를 저장해야함.
-    //3. 장착한 아이템의 스텟을 유저에게 적용 시켜 줘야함
     public UserItemData EquippedWeaponData { get; set; }
     public UserItemData EquippedShieldData { get; set; }
     public UserItemData EquippedChestArmorData { get; set; }
@@ -65,6 +76,9 @@ public class UserInventoryData : IUserData
     public UserItemData EquippedAccessoryData { get; set; }
 
     public List<UserItemData> InventoryItemDataList { get; set; } = new List<UserItemData>();
+
+    //1. 스텟을 적용하기위한 클래스 딕셔너리
+    public Dictionary<long, UserItemStats> EquippedItemDic { get; set; } = new Dictionary<long, UserItemStats>();
 
     public void SetDefaultData()
     {
@@ -274,3 +288,4 @@ public class UserInventoryData : IUserData
         return result;
     }
 }
+

@@ -61,8 +61,8 @@ public class InventoryUI : BaseUI
             return;
         }
         var userTotalItemStats = userInvetoryData.GetUserTotalItemStats();
-        AttackPowerAmountTxt.text = $"+{userTotalItemStats.AttackPower.ToString("N0")}";
-        DefenseAmountTxt.text = $"+{userTotalItemStats.Defense.ToString("N0")}";
+        AttackPowerAmountTxt.text = $"{userTotalItemStats.AttackPower.ToString("N0")}";
+        DefenseAmountTxt.text = $"{userTotalItemStats.Defense.ToString("N0")}";
     }
     #endregion
 

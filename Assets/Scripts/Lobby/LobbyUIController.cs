@@ -31,7 +31,7 @@ public class LobbyUIController : MonoBehaviour
         //해당 데이터가 정상적으로 존재한다면
         //챕터명을 표시 챕터 이미지도 로드해서 세팅
         CurrentChapterNameTxt.text = currChapterData.ChapterName;
-        var bgTexture = Resources.Load($"ChapterBg/Background_{userPlayData.SelectedChapter.ToString("D3")}") as Texture2D;
+        var bgTexture = Resources.Load($"ChapterBG/Background_{userPlayData.SelectedChapter.ToString("D3")}") as Texture2D;
         if(bgTexture != null)
         {
             CurrentChapterBg.texture = bgTexture;
@@ -59,7 +59,7 @@ public class LobbyUIController : MonoBehaviour
         UIManager.Instance.OpenUI<InventoryUI>(uiData);
     }
 
-    public void OcClickCurrChapter()
+    public void OnClickCurrChapter()
     {
         Logger.Log($"{GetType()}::OcClickCurrChapter");
         var uiData = new BaseUIData();

@@ -587,8 +587,8 @@ MonoBehaviour:
   itemPrefab: {fileID: 6744865518575649359, guid: 82cb787f564d9bf48b7d22c75dd9cffa, type: 3}
   dynamicItemSize: 0
   layout:
-    axis: 4
-    padding: {x: 0, y: 0}
+    axis: 5
+    padding: {x: 200, y: 0}
     space: {x: 0, y: 0}
     topToBotton: 1
     leftToRight: 1

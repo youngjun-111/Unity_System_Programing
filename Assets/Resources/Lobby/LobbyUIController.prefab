@@ -1241,7 +1241,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 9204537444845061097}
         m_TargetAssemblyTypeName: LobbyUIController, Assembly-CSharp
-        m_MethodName: OcClickCurrChapter
+        m_MethodName: OnClickCurrChapter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

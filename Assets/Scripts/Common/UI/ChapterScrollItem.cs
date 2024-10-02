@@ -74,7 +74,7 @@ public class ChapterScrollItem : InfiniteScrollItem
                 Round.color = isLocked ? new Color(0.5f, 0.5f, 0.5f, 1f) : Color.white;
             }
             //해당 챕터 넘버에 맞는 배경 이미지를 로드
-            var bgTexture = Resources.Load($"ChapterBg/Background_{m_ChapterScrollItemData.ChapterNo.ToString("D3")}") as Texture2D;
+            var bgTexture = Resources.Load($"ChapterBG/Background_{m_ChapterScrollItemData.ChapterNo.ToString("D3")}") as Texture2D;
             if(bgTexture != null)
             {
                 CurrChapterBg.texture = bgTexture;

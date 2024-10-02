@@ -3252,7 +3252,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6774903622216990072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10837ee7ec97f6d48b4db00e8ee75cba, type: 3}
+  m_Script: {fileID: 11500000, guid: b0df854f53de50441960e8b5a1e3f408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onChangeValue:
@@ -3267,6 +3267,7 @@ MonoBehaviour:
   onEndLine:
     m_PersistentCalls:
       m_Calls: []
+  snap: 0
   needItemCount: 0
   itemPrefab: {fileID: 804834456573388451, guid: 1f8f4741684e91a408cfc0b4291ce32f, type: 3}
   dynamicItemSize: 0

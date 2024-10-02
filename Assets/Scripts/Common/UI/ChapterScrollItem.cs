@@ -57,7 +57,28 @@ public class ChapterScrollItem : InfiniteScrollItem
             CurrChapter.SetActive(true);
             ComingSoonFx.gameObject.SetActive(false);
             ComingSoonTxt.gameObject.SetActive(false);
+            //유저플레이데이터를 가져와야함
+            var userPlayData = UserDataManager.Instance.GetUserData<UserPlayData>();
+            if(userPlayData != null)
+            {
+                //현재 최대로 클리어한 챕터와 비교하여 챕터의 해금 여부를 판단
+                //즉, 클리어한 챕터보다 선택한 챕터가 클경우 false = 해금 true = 락
+                var isLocked = m_ChapterScrollItemData.ChapterNo > userPlayData.MaxClearedChapter + 1;
+                //그리고 해금 여부에 따라 이미지 컴포넌트들을 처리해줌
 
+                //디밍(약간 광원 효과 느낌)은 해금되지 않았으면 활성화
+                Dim.gameObject.SetActive(isLocked);
+                //잠금 아이콘도 해금되지 않았으면 활성화
+                LockIcon.gameObject.SetActive(isLocked);
+                //테두리 이미지는 해금되었으면 밝게 아니면 어둡게
+                Round.color = isLocked ? new Color(0.5f, 0.5f, 0.5f, 1f) : Color.white;
+            }
+            //해당 챕터 넘버에 맞는 배경 이미지를 로드
+            var bgTexture = Resources.Load($"ChapterBg/Background_{m_ChapterScrollItemData.ChapterNo.ToString("D3")}") as Texture2D;
+            if(bgTexture != null)
+            {
+                CurrChapterBg.texture = bgTexture;
+            }
         }
     }
 }

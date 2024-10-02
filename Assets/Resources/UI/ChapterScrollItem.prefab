@@ -24679,6 +24679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3205508137703650125}
+  - component: {fileID: 6744865518575649359}
   m_Layer: 5
   m_Name: ChapterScrollItem
   m_TagString: Untagged
@@ -24709,6 +24710,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 700, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6744865518575649359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3205508137715433879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5470a567666b354ca36c6e9b70114d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoApplySize: 0
+  CurrChapter: {fileID: 6064293185467962766}
+  CurrChapterBg: {fileID: 8436366743519382216}
+  Dim: {fileID: 3818430926370459181}
+  LockIcon: {fileID: 1056423302503528701}
+  Round: {fileID: 1565819121101030669}
+  ComingSoonFx: {fileID: 2508623071984236072}
+  ComingSoonTxt: {fileID: 1834180233417349265}
 --- !u!1 &3802793460767020323
 GameObject:
   m_ObjectHideFlags: 0

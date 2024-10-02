@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 7543871592604300185}
   - component: {fileID: 1858284671606080938}
   - component: {fileID: 5749847161201915868}
-  - component: {fileID: 2487504593592183504}
+  - component: {fileID: 8209162202686622865}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -558,7 +558,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2487504593592183504
+--- !u!114 &8209162202686622865
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4194889523304596203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10837ee7ec97f6d48b4db00e8ee75cba, type: 3}
+  m_Script: {fileID: 11500000, guid: b0df854f53de50441960e8b5a1e3f408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onChangeValue:
@@ -582,13 +582,13 @@ MonoBehaviour:
   onEndLine:
     m_PersistentCalls:
       m_Calls: []
-  snap: 1
+  snap: 0
   needItemCount: 0
-  itemPrefab: {fileID: 7282394964444054744, guid: b032cb7b856293a4cb5bc94ec6ee2bcc, type: 3}
-  dynamicItemSize: 1
+  itemPrefab: {fileID: 6744865518575649359, guid: 82cb787f564d9bf48b7d22c75dd9cffa, type: 3}
+  dynamicItemSize: 0
   layout:
     axis: 4
-    padding: {x: 200, y: 0}
+    padding: {x: 0, y: 0}
     space: {x: 0, y: 0}
     topToBotton: 1
     leftToRight: 1

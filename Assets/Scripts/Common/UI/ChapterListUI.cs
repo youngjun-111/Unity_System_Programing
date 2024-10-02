@@ -26,7 +26,7 @@ public class ChapterListUI : BaseUI
         }
         SelectedChapter = userPlayData.SelectedChapter;
         //현재 선택한 챕터에 대한 UI처리를 해주는 함수
-        SetSeletedChapter();
+        SetSelectedChapter();
         //챕터 목록 스크롤뷰를 셋팅하는 함수
         SetChapterScrollLost();
         //인피니티 스크롤에 있는 MoveTo함수
@@ -45,7 +45,7 @@ public class ChapterListUI : BaseUI
     }
 
     //현재 선택한 챕터에 대한 UI처리를 해주는 함수
-    void SetSeletedChapter()
+    void SetSelectedChapter()
     {
         //게임 내에 추가된 챕터에 해당하면 선택한 챕터 UI요소들을 활성화
         if(SelectedChapter <= GlobalDefine.MAX_CHAPTER)
@@ -84,6 +84,27 @@ public class ChapterListUI : BaseUI
 
     void OnSnap(int selectedChapter)
     {
+        //현재 선택한 챕터를 매개변수로 받은 챕터로 변경해주고 SetSelectedChapter()함수 다시 호출
+        SelectedChapter = selectedChapter;
+        SetSelectedChapter();
+    }
 
+    public void OnClickSelect()
+    {
+        var userPlayData = UserDataManager.Instance.GetUserData<UserPlayData>();
+        if(userPlayData == null)
+        {
+            Logger.Log("없는데;");
+            return;
+        }
+        //유저가 선택 가능한 챕터 라면
+        if(SelectedChapter <= userPlayData.MaxClearedChapter +1)
+        {
+            //플레이 데이터를 변경해주고
+            //로비에 있는 현재 선택한 챕터UI를 갱신해줍니다.
+            userPlayData.SelectedChapter = SelectedChapter;
+            LobbyManager.Instance.LobbyUIController.SetCurrChapter();
+            CloseUI();
+        }
     }
 }

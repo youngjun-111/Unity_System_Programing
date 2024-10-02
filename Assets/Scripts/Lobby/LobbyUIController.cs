@@ -58,6 +58,14 @@ public class LobbyUIController : MonoBehaviour
         //UI매니저를 통해 인벤토리를 열게함
         UIManager.Instance.OpenUI<InventoryUI>(uiData);
     }
+
+    public void OcClickCurrChapter()
+    {
+        Logger.Log($"{GetType()}::OcClickCurrChapter");
+        var uiData = new BaseUIData();
+        UIManager.Instance.OpenUI<ChapterListUI>(uiData);
+    }
+
     private void Update()
     {
         MandleInput();

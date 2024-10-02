@@ -1,13 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class LobbyUIController : MonoBehaviour
 {
+    public TextMeshProUGUI CurrentChapterNameTxt;
+    public RawImage CurrentChapterBg;
     public void Init()
     {
+        //(주의 사항)EnableGoodsUI 함수명이 어느순간 부터 꼬엿네?
+        UIManager.Instance.EnableGoodsUI(true);
+        SetCurrChapter();
         //로비에서는 켜줘야 하기때문에 UIManager에서 작성해준 재화 활성화 비활성화 함수 호출
         UIManager.Instance.EnableGoodsUI(true);
+    }
+    //현재 선택 중인 챕터에 대한 UI 처리를 해줄 함수
+    public void SetCurrChapter()
+    {
+        //가져올 데이터가 뭐가 있을지 생각 해보면
+        //현재 선택중인 팹터 번호를 가진 해당 챕터 데이터를 가져오고
+        var userPlayData = UserDataManager.Instance.GetUserData<UserPlayData>();
+        if(userPlayData == null)
+        {
+            Logger.LogError("없다");
+            return;
+        }
+        var currChapterData = DataTableManager.Instance.GetChapterData(userPlayData.SelectedChapter);
+        //해당 데이터가 정상적으로 존재한다면
+        //챕터명을 표시 챕터 이미지도 로드해서 세팅
+        CurrentChapterNameTxt.text = currChapterData.ChapterName;
+        var bgTexture = Resources.Load($"ChapterBg/Background_{userPlayData.SelectedChapter.ToString("D3")}") as Texture2D;
+        if(bgTexture != null)
+        {
+            CurrentChapterBg.texture = bgTexture;
+        }
     }
 
     //로비UI프리팹을 생성시켜주고, 뭐 특정 행동 했을 때 

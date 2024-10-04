@@ -27,11 +27,11 @@ public class BaseUI : MonoBehaviour
     
     public virtual void Init(Transform anchor)
     {
-        Logger.Log($"{GetType()}::인잇");
+        Logger.Log($"{GetType()}:생성 되었음");
 
         m_OnShow = null;
         m_OnClose = null;
-        //anchor : UI캔버스 컴포넌트의 트랜스폰
+        //anchor : UI캔버스 컴포넌트의 트랜스폼
         transform.SetParent(anchor);
 
         var rectTransform = GetComponent<RectTransform>();
@@ -51,7 +51,7 @@ public class BaseUI : MonoBehaviour
 
     public virtual void SetInfo(BaseUIData uiData)
     {
-        Logger.Log($"{GetType()}::셋인포");
+        Logger.Log($"{GetType()}:오픈 되었음");
         m_OnShow = uiData.OnShow;
         m_OnClose = uiData.OnClose;
     }

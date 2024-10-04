@@ -60,7 +60,7 @@ public class UserPlayData : IUserData
         //일단 로그 띄우고
         Logger.Log($"{GetType()}::SetDefaultData");
         //초기 값을 설정해줌
-        MaxClearedChapter = 4;
+        MaxClearedChapter = 2;
         SelectedChapter = 1;
     }
 }

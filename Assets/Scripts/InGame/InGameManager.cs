@@ -5,6 +5,9 @@ using UnityEngine;
 public class InGameManager : SingletonBehaviour<InGameManager>
 {
     public InGameUIController InGameUIController { get; set; }
+
+    //일시정지 여부의 프로퍼티
+    public bool IsPaused { get; set; }
     //플레이할려고 선택한 챕터
     int m_SelectedChapter;
     //현재 스테이지
@@ -16,6 +19,18 @@ public class InGameManager : SingletonBehaviour<InGameManager>
     //백그라운드 스프라이트 랜더러 컴퍼넌트 변수
     SpriteRenderer m_Bg;
 
+    private void Start()
+    {
+        //씬 내에서 인게임유아이컨트롤러 스크립트를 가지고 있는 오브젝트를 찾아서 대입함
+        InGameUIController = FindObjectOfType<InGameUIController>();
+        if (!InGameUIController)
+        {
+            Logger.LogError("인게임 유아이 컨트롤러가 없음;;");
+            return;
+        }
+
+        InGameUIController.Init();
+    }
 
     protected override void Init()
     {
@@ -70,16 +85,27 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         stageObj.transform.localPosition = Vector3.zero;
     }
 
-    private void Start()
+    public void PauseGame()
     {
-        //씬 내에서 인게임유아이컨트롤러 스크립트를 가지고 있는 오브젝트를 찾아서 대입함
-        InGameUIController = FindObjectOfType<InGameUIController>();
-        if (!InGameUIController)
-        {
-            Logger.LogError("인게임 유아이 컨트롤러가 없음;;");
-            return;
-        }
-
-        InGameUIController.Init();
+        IsPaused = true;
+        //앞으로 구현할 인게임의 일시정지를 처리하는 코드
+        //GameManager.Instance.Paused = true;
+        //LevelManager.Intance.ToggleCharacterPause();
+        Time.timeScale = 0f;
+        //타임 스케일을 0 으로 바꾸면 그로 인해 영향을 받는 것들이 많아서
+        //일시정지를 한 후 게임 컨텐츠적으로 유저가 어떤 행위를 하도록 구현하는데 많은 제약이 생기게 됨
+        //그렇다고 타임스케일에 영향을 받지 않도록 타임스케일을 우회해서
+        //게임 컨텐츠를 개발하게 되면 많은 시간과 비용을 소모하게 될 수 있으므로 웬만하면
+        //타임스케일을 1로 유지하면 일시정지를 처리하는 것을 권장
+        //어떤 게임이냐에 따라서 단순히 유저의 인풋만 막거나 게임 내의 타이머만 제어해도
+        //처리가 충분히 될 수 있기 때문에 기획적으로 잘 고민해서 최대한 복잡하지 않게 일시정지 처리
     }
+
+    public void ResumeGame()
+    {
+        IsPaused = false;
+        Time.timeScale = 1f;
+    }
+
+
 }

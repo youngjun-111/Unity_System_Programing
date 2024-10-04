@@ -582,7 +582,7 @@ MonoBehaviour:
   onEndLine:
     m_PersistentCalls:
       m_Calls: []
-  snap: 0
+  snap: 1
   needItemCount: 0
   itemPrefab: {fileID: 6744865518575649359, guid: 82cb787f564d9bf48b7d22c75dd9cffa, type: 3}
   dynamicItemSize: 0

@@ -14,7 +14,6 @@ public class LobbyUIController : MonoBehaviour
         UIManager.Instance.EnableGoodsUI(true);
         SetCurrChapter();
         //로비에서는 켜줘야 하기때문에 UIManager에서 작성해준 재화 활성화 비활성화 함수 호출
-        UIManager.Instance.EnableGoodsUI(true);
     }
     //현재 선택 중인 챕터에 대한 UI 처리를 해줄 함수
     public void SetCurrChapter()

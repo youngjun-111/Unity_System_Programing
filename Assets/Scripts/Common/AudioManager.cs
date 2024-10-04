@@ -47,7 +47,7 @@ public class AudioManager : SingletonBehaviour<AudioManager>
             var audioClip = Resources.Load(pathStr, typeof(AudioClip)) as AudioClip;
             if (!audioClip)
             {
-                Logger.LogError($"{audioName} clip does not exist.");
+                Logger.LogError($"{audioName} 의 클립이 없음");
                 continue;
             }
 
@@ -71,7 +71,7 @@ public class AudioManager : SingletonBehaviour<AudioManager>
             var audioClip = Resources.Load(pathStr, typeof(AudioClip)) as AudioClip;
             if (!audioClip)
             {
-                Logger.LogError($"{audioName} clip does not exist.");
+                Logger.LogError($"{audioName} 의 클립이 없음");
                 continue;
             }
 
@@ -100,7 +100,7 @@ public class AudioManager : SingletonBehaviour<AudioManager>
         //존재하지 않다면 에러를 발생
         if (!m_BGMPlayer.ContainsKey(bgm))
         {
-            Logger.LogError($"Invalid clip name. {bgm}");
+            Logger.LogError($"{bgm}가(이) 없는데;;");
             return;
         }
         //존재한다면 해당 오디오소스 컴포넌트를 참조시켜주고
@@ -134,7 +134,7 @@ public class AudioManager : SingletonBehaviour<AudioManager>
         //존재하지 않다면 에러를 발생
         if (!m_SFXPlayer.ContainsKey(sfx))
         {
-            Logger.LogError($"Invalid clip name. {sfx}");
+            Logger.LogError($"{sfx}가(이) 없는데;;");
             return;
         }
         //재생

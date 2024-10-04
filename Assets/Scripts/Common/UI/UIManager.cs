@@ -25,7 +25,7 @@ public class UIManager : SingletonBehaviour<UIManager>
         m_GoodsUI = FindObjectOfType<GoodsUI>();
         if (!m_GoodsUI)
         {
-            Logger.Log("No stats ui component found");
+            Logger.Log("굿즈 유아이가 없음;;");
         }
     }
     //열기를 원하는 UI 화면의 실제 인스턴스를 가져오는 함수

@@ -82,7 +82,7 @@ public class UserInventoryData : IUserData
 
     public void SetDefaultData()
     {
-        Logger.Log($"{GetType()}::SetDefaultData");
+        Logger.Log($"{GetType()}::초기값");
         //기본적으로 12개의 아이템을 지급해 주도록 하겠음.
         //아이템의 시리얼 넘버는  다른 아이템과 겹치지 않는 고유의 값이어야 한다.
         //실제 각 프로젝트마다 고유의 법칙으로 시리얼 넘버를 만듬
@@ -133,7 +133,7 @@ public class UserInventoryData : IUserData
 
     public bool LoadData()
     {
-        Logger.Log($"{GetType()}::LoadData");
+        Logger.Log($"{GetType()}::로드 데이터");
         bool result = false;
         try
         {
@@ -147,42 +147,42 @@ public class UserInventoryData : IUserData
             if (!string.IsNullOrEmpty(weaponJson))
             {
                 EquippedWeaponData = JsonUtility.FromJson<UserItemData>(weaponJson);
-                Logger.Log($"EquippedWeaponData: SN:{EquippedWeaponData.SerialNumber} ItemID{EquippedWeaponData.ItemId}");
+                Logger.Log($"장비 데이터: SN:{EquippedWeaponData.SerialNumber} ItemID{EquippedWeaponData.ItemId}");
             }
             //방패
             string shieldJson = PlayerPrefs.GetString("EquippedShieldData");
             if (!string.IsNullOrEmpty(weaponJson))
             {
                 EquippedShieldData = JsonUtility.FromJson<UserItemData>(shieldJson);
-                Logger.Log($"EquippedShieldData: SN:{EquippedShieldData.SerialNumber} ItemID{EquippedShieldData.ItemId}");
+                Logger.Log($"방패 데이터 : SN:{EquippedShieldData.SerialNumber} ItemID{EquippedShieldData.ItemId}");
             }
             //갑옷
             string chestArmorJson  = PlayerPrefs.GetString("EquippedChestArmorData");
             if (!string.IsNullOrEmpty(chestArmorJson))
             {
                 EquippedChestArmorData  = JsonUtility.FromJson<UserItemData>(chestArmorJson);
-                Logger.Log($"EquippedChestArmorData: SN:{EquippedChestArmorData.SerialNumber} ItemID{EquippedChestArmorData.ItemId}");
+                Logger.Log($"갑옷 데이터 : SN:{EquippedChestArmorData.SerialNumber} ItemID{EquippedChestArmorData.ItemId}");
             }
             //장갑
             string glovesJson = PlayerPrefs.GetString("EquippedGlovesData");
             if (!string.IsNullOrEmpty(glovesJson))
             {
                 EquippedGlovesData = JsonUtility.FromJson<UserItemData>(glovesJson);
-                Logger.Log($"EquippedGlovesData: SN:{EquippedGlovesData.SerialNumber} ItemID{EquippedGlovesData.ItemId}");
+                Logger.Log($"장갑 데이터 : SN:{EquippedGlovesData.SerialNumber} ItemID{EquippedGlovesData.ItemId}");
             }
             //부츠
             string bootsJson  = PlayerPrefs.GetString("EquippedBootsData");
             if (!string.IsNullOrEmpty(bootsJson))
             {
                 EquippedBootsData = JsonUtility.FromJson<UserItemData>(bootsJson);
-                Logger.Log($"EquippedBootsData: SN:{EquippedBootsData.SerialNumber} ItemID{EquippedBootsData.ItemId}");
+                Logger.Log($"신발 데이터 : SN:{EquippedBootsData.SerialNumber} ItemID{EquippedBootsData.ItemId}");
             }
             //악세서리
             string accessoryJson  = PlayerPrefs.GetString("EquippedAccessoryData");
             if (!string.IsNullOrEmpty(accessoryJson))
             {
                 EquippedAccessoryData = JsonUtility.FromJson<UserItemData>(accessoryJson);
-                Logger.Log($"EquippedAccessoryData: SN:{EquippedAccessoryData.SerialNumber} ItemID{EquippedAccessoryData.ItemId}");
+                Logger.Log($"악세 데이터 : SN:{EquippedAccessoryData.SerialNumber} ItemID{EquippedAccessoryData.ItemId}");
             }
 
             //이벤토리아이템디어타 리스트로 저정된 스트링 값이 있는지 확인
@@ -196,11 +196,11 @@ public class UserInventoryData : IUserData
                 //그 래퍼 클래스 내에 있는 인벤토리아이템데이터리스트에 있는데이터를
                 //유저이벤토리아이템데이터의 인벤토리아이템데이터 리스트 변수에 대입
                 InventoryItemDataList = itemDataListWrapper.InventoryItemDataList;
-                Logger.Log("InventoryItemDataList");//잘 로드 되고있는지 확인
+                Logger.Log("인벤 아이템 데이터");//잘 로드 되고있는지 확인
                 //시리얼 넘버와 아이템 아이디도 찍어보자
                 foreach (var item in InventoryItemDataList)
                 {
-                    Logger.Log($"SerialNumber:{item.SerialNumber} ItemId:{item.ItemId}");
+                    Logger.Log($"시리얼 넘버 : {item.SerialNumber} 아이템 아이디 : {item.ItemId}");
                 }
             }
             //5. 유저 인벤토리를 로드할 시 모든 로딩이 끝나고 나면 함수를 호출해서 담음
@@ -209,7 +209,7 @@ public class UserInventoryData : IUserData
         }
         catch(Exception e)
         {
-            Logger.Log("Load failed(" + e.Message + ")");
+            Logger.Log("로드 실패 ! (" + e.Message + ")");
         }
         return result;
     }
@@ -217,7 +217,7 @@ public class UserInventoryData : IUserData
     //유저가 보유한 아이템을 저장하는 함수
     public bool SaveData()
     {
-        Logger.Log($"{GetType()}::SaveData");
+        Logger.Log($"{GetType()}::세이브 데이터");
         bool result = false;
 
         try
@@ -231,42 +231,42 @@ public class UserInventoryData : IUserData
             PlayerPrefs.SetString("EquippedWeaponData", weponJson);
             if(EquippedWeaponData != null)
             {
-                Logger.Log($"EquippedWeaponData: SN:{EquippedWeaponData.SerialNumber} ItemID{EquippedWeaponData.ItemId}");
+                Logger.Log($"무기 데이터 : 시리얼 넘버 : {EquippedWeaponData.SerialNumber} 아이템 아이디 : {EquippedWeaponData.ItemId}");
             }
             //방패
             string shieldJson = JsonUtility.ToJson(EquippedShieldData);
             PlayerPrefs.SetString("EquippedShieldData", shieldJson);
             if (EquippedShieldData != null)
             {
-                Logger.Log($"EquippedShieldData: SN:{EquippedShieldData.SerialNumber} ItemID{EquippedShieldData.ItemId}");
+                Logger.Log($"방배 데이터 : 시리얼 넘버 : {EquippedShieldData.SerialNumber} 아이템 아이디 : {EquippedShieldData.ItemId}");
             }
             //갑옷
             string chestArmorJson = JsonUtility.ToJson(EquippedChestArmorData);
             PlayerPrefs.SetString("EquippedChestArmorData", chestArmorJson);
             if (EquippedChestArmorData != null)
             {
-                Logger.Log($"EquippedChestArmorData: SN:{EquippedChestArmorData.SerialNumber} ItemID{EquippedChestArmorData.ItemId}");
+                Logger.Log($"갑옷 데이터 : 시리얼 넘버 : {EquippedChestArmorData.SerialNumber} 아이템 아이디 : {EquippedChestArmorData.ItemId}");
             }
             //장갑
             string glovesJson = JsonUtility.ToJson(EquippedGlovesData);
             PlayerPrefs.SetString("EquippedGlovesData", glovesJson);
             if (EquippedGlovesData != null)
             {
-                Logger.Log($"EquippedGlovesData: SN:{EquippedGlovesData.SerialNumber} ItemID{EquippedGlovesData.ItemId}");
+                Logger.Log($"장갑 데이터 : 시리얼 넘버 : {EquippedGlovesData.SerialNumber} 아이템 아이디 : {EquippedGlovesData.ItemId}");
             }
             //부츠
             string bootsJson = JsonUtility.ToJson(EquippedBootsData);
             PlayerPrefs.SetString("EquippedBootsData", bootsJson);
             if (EquippedBootsData != null)
             {
-                Logger.Log($"EquippedBootsData: SN:{EquippedBootsData.SerialNumber} ItemID{EquippedBootsData.ItemId}");
+                Logger.Log($"신발 데이터 : 시리얼 넘버 : {EquippedBootsData.SerialNumber} 아이템 아이디 : {EquippedBootsData.ItemId}");
             }
             //악세서리
             string accessoryJson = JsonUtility.ToJson(EquippedAccessoryData);
             PlayerPrefs.SetString("EquippedAccessoryData", accessoryJson);
             if (EquippedAccessoryData != null)
             {
-                Logger.Log($"EquippedAccessoryData: SN:{EquippedAccessoryData.SerialNumber} ItemID{EquippedAccessoryData.ItemId}");
+                Logger.Log($"악세 데이터 : 시리얼 넘버 : {EquippedAccessoryData.SerialNumber} 아이템 아이디 : {EquippedAccessoryData.ItemId}");
             }
 
             //저장에 필요한 랩퍼 클래스 인스턴스를 생성
@@ -279,17 +279,17 @@ public class UserInventoryData : IUserData
             string inventoryItemDataListJson = JsonUtility.ToJson(inventoryItemDataListWrapper);
             //이 스트링 값을 플레이어프렙스에 저장
             PlayerPrefs.SetString("InventoryItemDataList", inventoryItemDataListJson);
-            Logger.Log("InventoryItemDataList");
+            Logger.Log("인벤토리 아이템 리스트");
             foreach (var item in InventoryItemDataList)
             {
-                Logger.Log($"SerialNumber:{item.SerialNumber} ItemId:{item.ItemId}");
+                Logger.Log($"시리얼 넘버 : {item.SerialNumber} 아이템 아이디 : {item.ItemId}");
             }
             SetEquippedItemDic();
             result = true;
         }
         catch(Exception e)
         {
-            Logger.Log("Load failed(" + e.Message + ")");
+            Logger.Log("불러오기 실패 !(" + e.Message + ")");
         }
 
         return result;
@@ -369,7 +369,7 @@ public class UserInventoryData : IUserData
         //없으면 에러
         if(itemData == null)
         {
-            Logger.LogError($"Item data does not exist. ItemId:{itemId}");
+            Logger.LogError($"데이터 : {itemId} 가 없음");
             return;
         }
         //아이템 종류 추출

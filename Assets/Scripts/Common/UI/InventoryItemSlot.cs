@@ -37,7 +37,7 @@ public class InventoryItemSlot : InfiniteScrollItem
         //null 이면 로그에러
         if(m_InventoryIteSlotData == null)
         {
-            Logger.LogError("m_InventoryIteSlotData is invalid.");
+            Logger.LogError("인벤 슬롯이 없음;;");
             return;
         }
         //아이템 등급에 따른 백그라운드이미 처리

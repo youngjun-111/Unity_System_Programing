@@ -6,7 +6,7 @@ using UnityEditor;
 #if UNITY_EDITOR
 public class CustomTools : Editor
 {
-   [MenuItem("CustomTools/Add User Gem (+10000)")]
+   [MenuItem("치트/잼 10,000 추가")]
    public static void AddUserGem()  
     {
         var Gem = long.Parse(PlayerPrefs.GetString("Gem"));
@@ -16,7 +16,7 @@ public class CustomTools : Editor
         PlayerPrefs.Save();
     }
 
-    [MenuItem("CustomTools/Add User Gold (+100000)")]
+    [MenuItem("치트/골드 100,000 추가")]
     public static void AddUserGold()
     {
         var Gold = long.Parse(PlayerPrefs.GetString("Gold"));

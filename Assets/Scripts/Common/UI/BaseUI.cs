@@ -27,7 +27,7 @@ public class BaseUI : MonoBehaviour
     
     public virtual void Init(Transform anchor)
     {
-        Logger.Log($"{GetType()}::Init");
+        Logger.Log($"{GetType()}::인잇");
 
         m_OnShow = null;
         m_OnClose = null;
@@ -37,7 +37,7 @@ public class BaseUI : MonoBehaviour
         var rectTransform = GetComponent<RectTransform>();
         if (!rectTransform)
         {
-            Logger.LogError("UI does not have rectTransform.");
+            Logger.LogError("랙트트랜스폼 이 없음;");
             return;
         }
 
@@ -51,7 +51,7 @@ public class BaseUI : MonoBehaviour
 
     public virtual void SetInfo(BaseUIData uiData)
     {
-        Logger.Log($"{GetType()}::SetInfo");
+        Logger.Log($"{GetType()}::셋인포");
         m_OnShow = uiData.OnShow;
         m_OnClose = uiData.OnClose;
     }

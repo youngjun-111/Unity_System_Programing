@@ -104,7 +104,7 @@ public class EquipmentUI : BaseUI
         AttackPowerAmountTxt.text = $"+{itemData.AttackPower}";
         DefenseAmountTxt.text = $"+{itemData.Defense}";
         //Æ®·ç¸é Å»Âø, ÆÞ½º¸é ÀåÂø
-        EquipBtnTxt.text = m_EquipmentUIData.IsEquipped ? "Unequip" : "Equip";
+        EquipBtnTxt.text = m_EquipmentUIData.IsEquipped ? "ÀåÂø ÇØÁ¦" : "ÀåÂø";
     }
     //Å»Âø ÀåÂø ¹öÆ°À» ´­·¶À» ¶§ È£Ãâ ÇÒ ÇÔ¼ö
     public void OnClickEquipBtn()

@@ -17,7 +17,7 @@ public class GoodsUI : MonoBehaviour
         //데이터를 못가져오거나 없으면 오류
         if(userGoodData == null)
         {
-            Logger.LogError("No user goods data");
+            Logger.LogError("굿즈 데이터가 없음;;");
         }else
         {
             GoldAmountTxt.text = userGoodData.Gold.ToString("N0");

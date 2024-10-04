@@ -11,7 +11,7 @@ public class UserGoodsData : IUserData
 
     public void SetDefaultData()
     {
-        Logger.Log($"{GetType()}::SetlDefaultData");
+        Logger.Log($"{GetType()}::초기값 데이터");
 
         Gem = 0;
         Gold = 0;
@@ -19,7 +19,7 @@ public class UserGoodsData : IUserData
 
     public bool LoadData()
     {
-        Logger.Log($"{GetType()}::LoadData");
+        Logger.Log($"{GetType()}::로드 데이터");
 
         bool result = false;
 
@@ -33,14 +33,14 @@ public class UserGoodsData : IUserData
         }
         catch (System.Exception e)
         {
-            Logger.Log("Load failed(" + e.Message + ")");
+            Logger.Log("불러오기 실패 ! (" + e.Message + ")");
         }
         return result;
     }
 
     public bool SaveData()
     {
-        Logger.Log($"{GetType()}::SetlDefaultData");
+        Logger.Log($"{GetType()}::세이브데이터");
 
         bool result = false;
         try
@@ -55,10 +55,8 @@ public class UserGoodsData : IUserData
         }
         catch (System.Exception e)
         {
-            Logger.Log("Load failed (" + e.Message + ")");
+            Logger.Log("불러오기 실패 ! (" + e.Message + ")");
         }
-
-
         return result;
     }
 }

@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LobbyManager : SingletonBehaviour<LobbyManager>
 {
     //로비 컨트롤러를 프로퍼티로 선언
     public LobbyUIController LobbyUIController { get; set; }
+    //인게임 로딩 중 여부를 알 수 있는 변수 선언
+    //스타트 버튼을 계속적으로 누르는 등의 행위로 인게임 진입 요청을 여러번 하는것을 방지
+    bool m_IsLoadingInGame;
     protected override void Init()
     {
         //로비 매니저는 다른 씬으로 전환 할 때 삭제해 줄 것임.
         m_IsDestroyOnLoad = true;
+        m_IsLoadingInGame = false;
         base.Init();
     }
 
@@ -27,5 +32,21 @@ public class LobbyManager : SingletonBehaviour<LobbyManager>
 
         LobbyUIController.Init();
         AudioManager.Instance.PlayBGM(BGM.lobby);
+    }
+
+    public void StartInGame()
+    {
+        if (m_IsLoadingInGame)
+        {
+            return;
+        }
+        m_IsLoadingInGame = true;
+        //Color color, float startAlpha, float endAlpha, float duration, float startDelay, bool deactiveOnFinish, Action onFinish = null
+        UIManager.Instance.Fade(Color.black,0f,1f,0.5f,0f,false,()=> 
+        {
+            UIManager.Instance.CloseAllOpenUI();
+            SceneLoader.Instance.LoadScene(SceneType.InGame);
+        });
+        Logger.Log($"페이드 인");
     }
 }

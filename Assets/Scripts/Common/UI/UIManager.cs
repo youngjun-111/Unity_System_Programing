@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class UIManager : SingletonBehaviour<UIManager>
 {
     //화면을 랜더링할 캔버스 컴포넌트 트랜스폼
     public Transform UICanvasTrs;
     //UI 화면을 이 UI 캔버스 트랜스폼 하위에 위치시켜줘야하기 때문에 필요함.
-
     //UI 화면을 닫을 때 비활성화 시킨 UI 화면들을 위치시켜줄 트랜스폼
     public Transform ClosedUITrs;
+    //페이드 이미지
+    public Image m_Fade;
     //UI 화면이 열려있을 때 가장 상단에 열려있는 UI
     BaseUI m_FrontUI;
     //현재 열려있는, 즉 활성화 되어있는 UI 화면을 담고 있는 변수(풀)
@@ -21,6 +24,8 @@ public class UIManager : SingletonBehaviour<UIManager>
     protected override void Init()
     {
         base.Init();
+        //처음엔 페이드이미지를 안보여기 위해 스케일을 0 으로 설정
+        m_Fade.transform.localScale = Vector3.zero;
         //컴포넌트가 연동된 게임 오브젝트를 찾아서 GoodsUI컴포넌트를 리턴
         m_GoodsUI = FindObjectOfType<GoodsUI>();
         if (!m_GoodsUI)
@@ -91,12 +96,13 @@ public class UIManager : SingletonBehaviour<UIManager>
         //위의 유효성 검사를 통과해서 정상적으로 UI화면이 열릴 수 있다면
         //이제 실제로 UI화면을 열고 데이터를 세팅해 준다.
 
-        //childCount 하위에 있는 게임 오브젝트 갯수
-        var siblingIdx = UICanvasTrs.childCount - 1;
+        //childCount 하위에 있는 게임 오브젝트 갯수 -> -1
+        //기존 -1 이었던 것을 페이드가 생겨 -2로 변경 즉, 페이드UI는 최상위에 있어야 하기 때문에
+        //부모 하나 빼고 내려주었기 때문에 -2 를 써준 것 이다.
+        var siblingIdx = UICanvasTrs.childCount - 2;
 
         //UI화면 초기화
         ui.Init(UICanvasTrs);
-
         //하이라키 순위 변경 SetsiblingIndex : 매개변수를 넣어서 순위를 지정
         //siblingIdx는 0부터 시작하는데 0, 1, 2, 3 ...
         //이렇게 정수값 1단위로 늘어난다.
@@ -109,17 +115,13 @@ public class UIManager : SingletonBehaviour<UIManager>
         //예를 들어 자식이 2개 -> 0, 다음에 생성되면 3개가 되는데 그게 1이되고 그다음에 샹성되면 2가 되는 식으로
         //매번 캔바스 상에서 가장 아래에 위치하게 되고 화면에서는 가장 최상단에 노출
         ui.transform.SetSiblingIndex(siblingIdx);
-
         //컴포넌트가 연동된 게임오브젝트 활성화
         ui.gameObject.SetActive(true);
-
         //UI 화면에 보이는 UI요소의 데이터를 세팅해줌
         ui.SetInfo(uiData);
         ui.ShowUI();
-
         //현재 열고자하는 화면 UI가 가장 상단에 있는 UI가 될것이기 때문에 이렇게 설정
         m_FrontUI = ui;
-
         //m_OpenUIPool에 생성한 UI인스턴스를 넣어준다.
         m_OpenUIPool[uiType] = ui.gameObject;
     }
@@ -200,5 +202,43 @@ public class UIManager : SingletonBehaviour<UIManager>
             //굿즈 유아이의 함수를 불러와서 재화를 표시
             m_GoodsUI.SetValues();
         }
+    }
+
+    //페이드 함수
+    public void Fade(Color color, float startAlpha, float endAlpha, float duration, float startDelay, bool deactiveOnFinish, Action onFinish = null)
+    {
+        StartCoroutine(FadeCo(color, startAlpha, endAlpha, duration, startDelay, deactiveOnFinish, onFinish));
+    }
+    //페이드 처리는 코루틴으로
+    IEnumerator FadeCo(Color color, float startAlpha, float endAlpha, float duration, float startDelay, bool deactiveOnFinish, Action onFinish = null)
+    {
+        yield return new WaitForSeconds(startDelay);
+
+        //0이었어 스케일을 딜레이 시간후에 초기 값으로
+        m_Fade.transform.localScale = Vector3.one;
+        //색깔은 rgb로 해서 하얀색으로
+        m_Fade.color = new Color(color.r, color.g, color.b, startAlpha);
+        var startTime = Time.realtimeSinceStartup;
+        while(Time.realtimeSinceStartup - startTime < duration)
+        {
+            m_Fade.color = new Color(color.r, color.g, color.b, Mathf.Lerp(startAlpha, endAlpha, (Time.realtimeSinceStartup - startTime) / duration));
+            yield return null;
+        }
+        m_Fade.color = new Color(color.r, color.g, color.b, endAlpha);
+        //끝났다면 다시 크기를 0으로
+        if (deactiveOnFinish)
+        {
+            m_Fade.transform.localScale = Vector3.zero;
+        }
+        //액션 널검사
+        onFinish?.Invoke();
+        //처리를 해주도록 한다.
+        //페이드가 끝나면 원하는 처리를 유동적으로 처리할 수 있도록
+    }
+
+    //페이드 취소 함수
+    public void CancelFade()
+    {
+        m_Fade.transform.localScale = Vector3.zero;
     }
 }

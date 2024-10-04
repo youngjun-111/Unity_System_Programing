@@ -66,6 +66,17 @@ public class LobbyUIController : MonoBehaviour
         UIManager.Instance.OpenUI<ChapterListUI>(uiData);
     }
 
+    public void OnClickStartBtn()
+    {
+        Logger.Log($"{GetType()}::스타트 버튼 누름");
+        AudioManager.Instance.PlaySFX(SFX.ui_button_click);
+        AudioManager.Instance.StopBGM();
+        //이건이제 로비 매니저에서 구현해서 관리해줄 것임.
+        //왜?? 다른건 전부다 UI컨트롤러에서 해줬으면서.. 왜 스타트버튼만 Manager에서 하는건지?
+        //다른건 PopupUI 라면 이 버튼은 씬전환이기 때문에
+        LobbyManager.Instance.StartInGame();
+    }
+
     private void Update()
     {
         MandleInput();

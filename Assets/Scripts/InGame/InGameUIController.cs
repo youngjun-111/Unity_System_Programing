@@ -11,7 +11,7 @@ public class InGameUIController : MonoBehaviour
     private void Update()
     {
         //인게임이 일시정지 되었는지 확인해서 일시정지 되지 않을 때만 인풋을 처리해 주도록
-        if (!InGameManager.Instance.IsPaused)
+        if (!InGameManager.Instance.IsPaused && !InGameManager.Instance.IsStageCleared)
         {
             HandleInput();
         }
@@ -61,7 +61,7 @@ public class InGameUIController : MonoBehaviour
         if (!focus)
         {
             //일시 정지가 되어있지 않았다면
-            if (!InGameManager.Instance.IsPaused)
+            if (!InGameManager.Instance.IsPaused && InGameManager.Instance.IsStageCleared)
             {
                 var uiData = new BaseUIData();
                 UIManager.Instance.OpenUI<PauseUI>(uiData);

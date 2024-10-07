@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class ChapterClearUIData : BaseUI
+
+public class ChapterClearUIData : BaseUIData
 {
     //어떤 챕터를 클리어했는지
     public int chapter;
@@ -25,5 +26,47 @@ public class ChapterClearUI : BaseUI
     //클리어 이펙트배열
     public ParticleSystem[] ClearFX;
     //전용 데이터 클래스를 담을 변수
-    ChapterClearUIData m_ChapterClearUIData;
+    private ChapterClearUIData m_ChapterClearUIData;
+
+    public override void SetInfo(BaseUIData uiData)
+    {
+        base.SetInfo(uiData);
+
+        //매개 변수로 받은 uiData를 ChapterClearUIData로 받아줌
+        m_ChapterClearUIData = uiData as ChapterClearUIData;
+
+        if (m_ChapterClearUIData == null)
+        {
+            Logger.LogError("이건 없는데;;");
+            return;
+        }
+        var chapterData = DataTableManager.Instance.GetChapterData(m_ChapterClearUIData.chapter);
+
+        if(chapterData == null)
+        {
+            Logger.LogError($"챕터 없음:{m_ChapterClearUIData.chapter}");
+            return;
+        }
+
+        Reward.SetActive(m_ChapterClearUIData.earnReward);
+
+        if (m_ChapterClearUIData.earnReward)
+        {
+            GemRewardAmountTxt.text = chapterData.ChapterRewardGem.ToString("N0");
+            GoldRewardAmountTxt.text = chapterData.ChapterRewardGold.ToString("N0");
+        }
+
+        HomeBtn.GetComponent<RectTransform>().localPosition = new Vector3(0f, m_ChapterClearUIData.earnReward ? -250f : 50f, 0f);
+        //이펙트 재생
+        for (int i = 0; i < ClearFX.Length; i++)
+        {
+            ClearFX[i].Play();
+        }
+    }
+
+    public void OnClickHomeBtn()
+    {
+        SceneLoader.Instance.LoadScene(SceneType.Lobby);
+        CloseUI();
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using SuperMaxim.Messaging;
 
 public class ChapterClearUIData : BaseUIData
 {
@@ -54,6 +55,23 @@ public class ChapterClearUI : BaseUI
         {
             GemRewardAmountTxt.text = chapterData.ChapterRewardGem.ToString("N0");
             GoldRewardAmountTxt.text = chapterData.ChapterRewardGold.ToString("N0");
+            var userGoodsData = UserDataManager.Instance.GetUserData<UserGoodsData>();
+            if(userGoodsData == null)
+            {
+                return;
+            }
+            userGoodsData.Gold += chapterData.ChapterRewardGold;
+            userGoodsData.Gem += chapterData.ChapterRewardGem;
+            userGoodsData.SaveData();
+
+            //이제 유저가 보유한 재화가 변동되었다는 메시지를 발행.
+            var goldUpdateMsg = new GoldUpdateMsg();
+            goldUpdateMsg.isAdd = true;
+            Messenger.Default.Publish(goldUpdateMsg);
+            //보석도 동일하게 처리
+            var gemUpdateMsg = new GemUpdateMsg();
+            gemUpdateMsg.isAdd = true;
+            Messenger.Default.Publish(gemUpdateMsg);
         }
 
         HomeBtn.GetComponent<RectTransform>().localPosition = new Vector3(0f, m_ChapterClearUIData.earnReward ? -250f : 50f, 0f);

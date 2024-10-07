@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum BGM
 {
-    lobby,
+    lobby,//로비 BGM
     COUNT,
 }
 public enum SFX
 {
-    chapter_clear,
-    stage_clear,
-    ui_button_click,
+    chapter_clear,//챕터 클리어 효과음
+    stage_clear,//스테이지 클리어 효과음
+    ui_button_click,//버튼 클릭 효과음
     ui_get,//재화 획득 효과음
     ui_increase,//재화 텍스트 증가 효과음
     COUNT,

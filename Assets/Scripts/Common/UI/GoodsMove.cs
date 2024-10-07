@@ -32,10 +32,12 @@ public class GoodsMove : MonoBehaviour
         {
             m_Transform.position = Vector2.MoveTowards(m_Transform.position, m_DestPosition, MoveSpeed * Time.deltaTime);
             var rectLocalPosition = m_RectTransform.localPosition;
+            //z값은 0 으로 보정
             m_RectTransform.localPosition = new Vector3(rectLocalPosition.x, rectLocalPosition.y, 0f);
 
             yield return null;
         }
+        //목표 위치에 도달하면 삭제
         Destroy(gameObject);
     }
 }

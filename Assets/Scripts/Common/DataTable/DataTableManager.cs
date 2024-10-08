@@ -150,7 +150,6 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
         return AchievementDataTable.Where(item => item.AchievementType == achievementType).FirstOrDefault();
         //이 테이블안에서 어디에있냐[()안에 있는 조건에 맞는 위치 == 조건이 트루일때만]에서 첫번째 값을 반환
     }
-
     #endregion
 }
 

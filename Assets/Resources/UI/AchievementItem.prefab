@@ -84,6 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7565847519264601784}
+  - component: {fileID: 8528067962406199089}
   m_Layer: 5
   m_Name: AchievementItem
   m_TagString: Untagged
@@ -116,6 +117,29 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1000, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8528067962406199089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916200170271042730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb519650f947eb409058527750d1baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoApplySize: 0
+  AchievedBg: {fileID: 2371316784001828611}
+  UnAchievedBg: {fileID: 4670500935628364282}
+  AchievementNameTxt: {fileID: 2225675148736277828}
+  AchievementProgressSlider: {fileID: 2448886686118570444}
+  AchievementProgressTxt: {fileID: 6867539779588282846}
+  RewardIcon: {fileID: 9193482048764702915}
+  RewardAmountTxt: {fileID: 1962293852122419042}
+  ClaimBtn: {fileID: 7161076850804718202}
+  ClaimBtnImg: {fileID: 2270558145643966926}
+  ClaimBtnTxt: {fileID: 6558670055768690467}
 --- !u!1 &2003811091602594246
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +396,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8528067962406199089}
         m_TargetAssemblyTypeName: AchievementItem, Assembly-CSharp
         m_MethodName: OnClickClaimBtn
         m_Mode: 1

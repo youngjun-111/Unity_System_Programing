@@ -51,10 +51,10 @@ public class UserAchievementData : IUserData
                 UserAchievementProgressDataListWrapper achievementProgressDataListWrapper = JsonUtility.FromJson<UserAchievementProgressDataListWrapper>(achievementProgressDataListJson);
                 //래퍼 클래스에 담긴 데이터를 다시 업적데이터 클래스의 업적프로그래스 데이터 리스트 대입
                 AchievementProgressDataList = achievementProgressDataListWrapper.AchievementProgressDataList;
-                Logger.Log("AchievementProgressDataList");
+                Logger.Log("업적 프로그래스 데이터의 리스트에서 가져올게요");
                 foreach (var item in AchievementProgressDataList)
                 {
-                    Logger.Log($"AchievementType:{item.AchievementType} AchievementAmount{item.AchievementAmount} IsAchieved{item.IsAchieved} IsRewardClaimed{item.IsRewardClaimed}");
+                    Logger.Log($"업적 타입 : {item.AchievementType} 업적 조건 : {item.AchievementAmount} 달성 여부 : {item.IsAchieved} 보상 수령 여부 : {item.IsRewardClaimed}");
                 }
             }
             result = true;
@@ -82,10 +82,10 @@ public class UserAchievementData : IUserData
             //이 스트링 값을 플레이어프랩스에 저장
             PlayerPrefs.SetString("AchievementProgressDataList", achievementProgressDataListJson);
 
-            Logger.Log("AchievementProgressDataList");
+            Logger.Log("업적 프로그래스 데이터의 리스트에서 가져올게요");
             foreach (var item in AchievementProgressDataList)
             {
-                Logger.Log($"AchievementType:{item.AchievementType} AchievementAmount{item.AchievementAmount} IsAchieved{item.IsAchieved} IsRewardClaimed{item.IsRewardClaimed}");
+                Logger.Log($"업적 타입 : {item.AchievementType} 업적 조건 : {item.AchievementAmount} 달성 여부 : {item.IsAchieved} 보상 수령 여부 : {item.IsRewardClaimed}");
             }
             PlayerPrefs.Save();
             result = true;

@@ -521,7 +521,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3655118641091208910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10837ee7ec97f6d48b4db00e8ee75cba, type: 3}
+  m_Script: {fileID: 11500000, guid: b0df854f53de50441960e8b5a1e3f408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onChangeValue:
@@ -538,7 +538,7 @@ MonoBehaviour:
       m_Calls: []
   snap: 0
   needItemCount: 0
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 8528067962406199089, guid: ccad9b6aa2026ad4687273cb74b6ee4a, type: 3}
   dynamicItemSize: 0
   layout:
     axis: 1

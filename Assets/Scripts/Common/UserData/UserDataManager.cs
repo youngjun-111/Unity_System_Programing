@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
+
 public class UserDataManager : SingletonBehaviour<UserDataManager>
 {
     //저장된 유저 데이터 존재 여부
@@ -15,6 +17,7 @@ public class UserDataManager : SingletonBehaviour<UserDataManager>
     {
         //싱클톤인스턴스 처리가 인잇 함수에서 실행 되기 떄문에 해줘여함.
         base.Init();
+
         //모든 유저 데이터를 UserDataList에 추가
         //셋팅 데이터 - 설정창
         UserDataList.Add(new UserSettingsData());
@@ -24,6 +27,8 @@ public class UserDataManager : SingletonBehaviour<UserDataManager>
         UserDataList.Add(new UserInventoryData());
         //유저 플레이 데이터 - 챕터
         UserDataList.Add(new UserPlayData());
+        //유저 플레이 데이터 - 업적
+        UserDataList.Add(new  UserAchievementData());
     }
     //모든 유저데이터를 기본 값으로 초기화 하는 함수
     public void SetDefaultUserData() 

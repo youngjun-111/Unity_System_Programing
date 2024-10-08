@@ -68,6 +68,13 @@ public class ChapterClearUI : BaseUI
             var goldUpdateMsg = new GoldUpdateMsg();
             goldUpdateMsg.isAdd = true;
             Messenger.Default.Publish(goldUpdateMsg);
+            //이제 업적 진행 처리
+            //유저 업적 데이터를 가져오고
+            var userAchievementData = UserDataManager.Instance.GetUserData<UserAchievementData>();
+            if (userAchievementData != null)
+            {
+                userAchievementData.ProgressAchievement(AchievementType.CollectGold, chapterData.ChapterRewardGold);
+            }
             //보석도 동일하게 처리
             var gemUpdateMsg = new GemUpdateMsg();
             gemUpdateMsg.isAdd = true;

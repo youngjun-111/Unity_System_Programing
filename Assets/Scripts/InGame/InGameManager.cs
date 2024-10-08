@@ -23,6 +23,9 @@ public class InGameManager : SingletonBehaviour<InGameManager>
     ChapterData m_CurrChapterData;
     //현재 스테이지 오브젝트 인스턴스를 가지고 있을 게임 오브젝트 변수
     GameObject m_LoadedStage;
+
+    //private Coin[] m_Coins;
+
     private void Start()
     {
         //씬 내에서 인게임유아이컨트롤러 스크립트를 가지고 있는 오브젝트를 찾아서 대입함
@@ -34,6 +37,13 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         }
 
         InGameUIController.Init();
+        //_TEMP
+        var userAchievementData = UserDataManager.Instance.GetUserData<UserAchievementData>();
+        if(userAchievementData != null)
+        {
+            userAchievementData.ProgressAchievement(AchievementType.ClearChapter1, 1);
+            userAchievementData.ProgressAchievement(AchievementType.ClearChapter3, 1);
+        }
     }
 
     private void Update()
@@ -137,6 +147,31 @@ public class InGameManager : SingletonBehaviour<InGameManager>
             //선택한 챕터도 방금 해금한 다음 챕터로 설정
             //이는 로비로 나갔을 때 해금한 챕터가 선택한 챕터로 선택되도록 하기 위함
             userPlayData.SaveData();
+        }
+        //챕터 클리어 업적 처리
+        //유저 업적 데이터를 가져오고
+        var userAchievementData = UserDataManager.Instance.GetUserData<UserAchievementData>();
+        if(userAchievementData != null)
+        {
+            //현재 선택한 챕터에 대해 스위치문으로 분기를 줘서
+            //챕터 1,2,3에 대한 업적 진행 처리를 해주겠음
+            //챕터 클리어 업적은 단순하게 1을 달성 수치로 넘겨주겠음
+            //해당 챕터의 타입을 정의해줬으니 그 클리어 타입에서
+            //csv파일 안에있는 achievement_goal에 써져있는 달성 숫자를 써줌
+            switch (m_SelectedChapter)
+            {
+                case 1:
+                    userAchievementData.ProgressAchievement(AchievementType.ClearChapter1, 1);
+                    break;
+                case 2:
+                    userAchievementData.ProgressAchievement(AchievementType.ClearChapter2, 1);
+                    break;
+                case 3:
+                    userAchievementData.ProgressAchievement(AchievementType.ClearChapter3, 1);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
